@@ -1,0 +1,32 @@
+.social {
+  @include list-reset;
+  padding: 0 60px;
+  border-bottom: 1px solid #e5e5e5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.social__item {
+  padding: 26px 0 18px;
+}
+
+
+.social__img:hover {
+  fill: $second-main-color;
+}
+
+.social__img:active {
+  opacity: 0.3;
+}
+
+@media (min-width: $medium-width) {
+
+  .social {
+    padding: 0;
+    margin-right: 82px;
+    border: none;
+    width: 140px;
+    justify-content: space-between;
+  }
+}

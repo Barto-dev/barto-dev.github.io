@@ -1,0 +1,178 @@
+.products {
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 32px 30px 30px;
+}
+
+.products__list {
+  @include list-reset;
+}
+
+.products__item {
+  margin-bottom: 30px;
+  transition: all 0.3s linear;
+
+    &:hover {
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.25);
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: $medium-width ) {
+
+  .products {
+    max-width: 768px;
+    padding: 70px 50px 55px;
+  }
+
+  .products__item {
+    margin-bottom: 54px;
+  }
+}
+
+@media (min-width: $large-width) {
+
+  .products {
+    max-width: 1150px;
+    padding: 115px 50px 0;
+  }
+
+  .products__list {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .products__item {
+    display: flex;
+
+    &:last-child {
+      margin-bottom: 54px;}
+  }
+}
+
+/*************************************/
+
+
+.card-product__info {
+  padding: 27px 28px 8px;
+  border: 1px solid #ededed;
+
+
+}
+
+.card-product__title {
+  margin: 0;
+  margin-bottom: 4px;
+}
+
+.card-product__link {
+  display: block;
+  font-size: 17px;
+  line-height: 24px;
+  font-weight: 700;
+  color: $bold-text-color;
+  text-decoration: none;
+
+  &:hover {
+    opacity: 0.6;
+  }
+
+  &:active {
+    opacity: 0.3;
+  }
+}
+
+
+
+.card-product__characteristic {
+  margin: 0;
+  margin-bottom: 20px;
+  font-size: 13px;
+  color: $text-color;
+}
+
+.card-product__price-wrapper {
+  min-height: 65px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #ededed;
+}
+
+.card-product__price {
+  font-size: 15px;
+  line-height: 24px;
+  font-weight: 700;
+  color: $bold-text-color;
+}
+
+.card-product__basket {
+  stroke: #cccccc;
+
+  &:hover {
+    stroke: $main-color;
+  }
+
+  &:active {
+    opacity: 0.3;
+  }
+}
+
+
+@media (min-width: $medium-width) {
+
+  .card-product {
+    display: flex;
+  }
+
+  .card-product__info {
+    width: 50%;
+    min-height: 334px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-product__link {
+    font-size: 20px;
+  }
+
+  .card-product__characteristic {
+    font-size: 15px;
+  }
+
+  .card-product__price-wrapper {
+    margin-top: auto;
+    padding: 5px;
+    padding-bottom: 0;
+  }
+
+  .card-product__price {
+    font-size: 17px;
+  }
+}
+
+@media (min-width: $large-width) {
+
+  .products__card {
+    flex-direction: column;
+    width: 315px;
+  }
+
+  .card-product__info {
+    width: auto;
+    min-height: 195px;
+    flex-grow: 1;
+  }
+
+  .card-product__characteristic {
+    margin-bottom: 15px;
+  }
+
+  .card-product__price-wrapper {
+    padding: 0;
+  }
+
+}

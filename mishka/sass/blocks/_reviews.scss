@@ -1,0 +1,181 @@
+.reviews {
+  position: relative;
+  max-width: 320px;
+  padding: 24px 30px 45px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+
+  &::after {
+    position: absolute;
+    content: "";
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -4px;
+    width: 100%;
+    height: 6px;
+    background-image: url(../img/week-product/zigzag-gray.svg);
+    background-repeat: repeat-x;
+  }
+}
+
+.reviews__title {
+  margin: 0;
+  margin-bottom: 24px;
+  font-size: 25px;
+  color: $bold-text-color;
+  font-weight: 700;
+}
+
+.reviews__text {
+  margin: 0;
+  margin-bottom: 22px;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.reviews__user {
+  margin: 0;
+  margin-bottom: 29px;
+}
+
+.reviews__author {
+  line-height: 24px;
+  font-weight: 700;
+  color: $bold-text-color;
+}
+
+.reviews__author-email {
+  color: $text-color;
+}
+
+.reviews__navigation-wrapper {
+  display: flex;
+  margin-bottom: 33px;
+}
+
+.reviews__nav-button {
+  border: 1px solid $under-border-color;
+  padding: 13px 38px;
+  background-color: #ffffff;
+  cursor: pointer;
+
+  &:hover img {
+    opacity: 0.6;
+  }
+
+  &:active img {
+    opacity: 0.3;
+  }
+}
+
+.reviews__nav-arrow {
+  width: 50px;
+  height: 26px;
+}
+
+@media (min-width: $medium-width) {
+
+  .reviews {
+    padding: 78px 50px 80px;
+    background-image: url(../img/reviews/review-background@1X.jpeg);
+    background-repeat: no-repeat;
+    max-width: 768px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    @media (min-resolution: $retina-dppx), (min-resolution: $retina-dppx) {
+          background-image: url(../img/reviews/review-background@2X.jpeg);
+    }
+
+    &::after {
+      bottom: -15px;
+      width: 100%;
+      height: 17px;
+      background-image: url(../img/week-product/zigzag-gray2.svg);
+  }
+  }
+
+  .reviews__title {
+    margin-bottom: 50px;
+    order: -2;
+    font-size: 43px;
+    line-height: 50px;
+  }
+
+  .reviews__text {
+    font-size: 17px;
+    margin-bottom: 55px;
+  }
+
+  .reviews__user {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .reviews__author {
+    font-size: 18px;
+    margin-bottom: 3px;
+  }
+
+  .reviews__author-email {
+    font-size: 17px;
+  }
+
+  .reviews__nav-button {
+    border: none;
+    padding: 16px 19px;
+  }
+
+  .reviews__send-button {
+    order: -1;
+    width: 175px;
+  }
+}
+
+
+@media (min-width: $large-width) {
+
+  .reviews {
+    padding: 73px 100px 155px;
+    max-width: 1250px;
+    padding-left: 272px;
+    background-position: 100px 0;
+
+    &::after {
+      bottom: 0;
+      width: 1052px;
+      height: 23px;
+      background-image: url(../img/week-product/zigzag-desktop.svg);
+    }
+  }
+
+  .reviews__title {
+    font-size: 53px;
+    line-height: 57px;
+    margin-bottom: 45px;
+  }
+
+  .reviews__text {
+    width: 768px;
+    margin-bottom: 10px;
+  }
+
+  .reviews__send-button {
+    margin-top: 6px;
+  }
+
+  .reviews__user {
+    margin-top: -3px;
+    margin-left: 3px;
+  }
+
+  .reviews__author {
+    font-size: 17px;
+    line-height: 30px;
+    margin-bottom: 1px;
+  }
+}
+

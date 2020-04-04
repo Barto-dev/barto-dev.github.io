@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+.content-box-component {
+  box-sizing: content-box;
+}
+
+.main-container {
+  min-width: 320px;
+  //margin: 0 auto;
+  font-family: "Open Sans", "Arial", sans-serif;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 30px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  clip: rect(0 0 0 0);
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.button {
+  font-size: 17px;
+  line-height: 20px;
+  width: 260px;
+  border: 2px solid #000;
+  padding: 15px;
+  font-weight: 700;
+  color: $bold-text-color;
+  text-transform: uppercase;
+  cursor: pointer;
+  background-color: #ffffff;
+  transition: all 0.3s linear;
+
+  &:hover,
+  &:focus{
+    outline: none;
+    background-color: $text-color;
+    color: #ffffff;
+    border-color: $text-color;
+  }
+
+  &:active {
+    color: rgba(255, 255, 255, 0.3);
+  }
+}

@@ -1,0 +1,43 @@
+.developer__copyright {
+  padding: 17px 37px 27px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.3s linear;
+
+  &:hover .developer__img {
+    fill: $second-main-color;
+  }
+
+  &:active {
+    opacity: 0.3;
+  }
+}
+
+.developer__info {
+  margin: 0;
+  font-size: 19px;
+  line-height: 18px;
+  font-weight: 700;
+  color: $bold-text-color;
+}
+
+.developer__img {
+  fill: $main-color;
+}
+
+@media (min-width: $medium-width) {
+
+  .developer__copyright {
+    width: 185px;
+    padding: 0;
+  }
+}
+
+@media (min-width: $large-width) {
+
+  .developer {
+    margin-left: auto;
+  }
+}
