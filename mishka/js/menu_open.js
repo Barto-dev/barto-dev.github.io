@@ -1,4 +1,4 @@
-"use strict";
+// "use strict";
 
 let navigation = document.querySelector(".main-nav");
 let toggleButton = document.querySelector(".main-nav__button-toggle");
@@ -22,21 +22,26 @@ toggleButton.addEventListener("click", function () {
 //Modal window
 let modal = document.querySelector(".modal-order");
 let overlay = document.querySelector(".modal-overlay");
+//Получаем массив всех кнопок которые могут открыть модальное окно
 let openModal = document.querySelectorAll(".js-open-modal");
 
 if (modal && overlay && openModal) {
 
   let closeModal = function() {
-      //Добавляет анимацию закрытия так как изначально она удаляется при git  открытии модального окна.
+    //сработает только если клас не содержит анимацию закрытия, фиксит повторное
+    // открытие при быстром нажатии клавиш esc
+    if (!modal.classList.contains("modal-close-animation")) {
+      //Добавляет анимацию закрытия так как изначально она удаляется при открытии модального окна.
       modal.classList.toggle("modal-close-animation");
       //через 0.4секунды после проигрывания анимации, убирает класс   открытия окна и потом прячет оверелей
       setTimeout(function () {
         modal.classList.toggle("modal-opened");
       }, 400);
       overlay.classList.toggle("modal-overlay-opened");
+    }
   };
 
-  for (let i=0; i<openModal.length; i++) {
+  for (let i=0; i < openModal.length; i++) {
     //Открытие модального окна при клике на кнопку заказать
     openModal[i].addEventListener("click", function (evt) {
       evt.preventDefault();
@@ -54,10 +59,74 @@ if (modal && overlay && openModal) {
       closeModal();
     }
   });
-
   //При нажатии на оверлей, закрывает модалку, при нажатии на модалку, она не закроется потому что выше оверлея по
   // z-index
   overlay.addEventListener("click", closeModal);
 
+  //error submit animation
+  let modalForm = document.querySelector(".modal-order__form");
+  let sizeInput = document.querySelectorAll(".size-list__radio-button");
+
+  //Функция для проверки нажатия хоть одного radio-button
+  function checked(arr) {
+    let result = false;
+    for (let i=0; i<arr.length; i++) {
+      if(arr[i].checked) {
+        result = true
+      }
+    }
+    return result;
+  }
+
+  modalForm.addEventListener("submit", function (evt) {
+    if (!checked(sizeInput)) {
+      evt.preventDefault();
+      modal.classList.remove("modal-error");
+      modal.offsetWidth = modal.offsetWidth;
+      modal.classList.add("modal-error");
+    }
+  })
 }
+
+
+//Local storage
+let orderForm = document.querySelector(".form");
+let orderName = document.querySelector('[name="name"]');
+let orderFamilyName = document.querySelector('[name="family-name"]');
+let orderFatherName = document.querySelector('[name="father-name"]');
+
+if (orderForm) {
+  let isStorageSupport = true;
+  let nameStorage = "";
+  let familyNameStorage = "";
+  let fatherNameStorage = "";
+
+  //Проверяем поддержку localStorage в браузере, по умолчанию в скрипте он определяется как включеный.
+  try {
+    nameStorage = localStorage.getItem("name");
+  } catch (err) {
+    isStorageSupport = false;
+  }
+    //Получаем данные с local storage
+  familyNameStorage = localStorage.getItem("familyName");
+  fatherNameStorage = localStorage.getItem("fatherName");
+
+    //При отправке формы ,если локал localStorage работает, записываем в него значения ФИО
+    orderForm.addEventListener("submit",function () {
+      if (isStorageSupport) {
+        localStorage.setItem("name", orderName.value);
+        localStorage.setItem("familyName", orderFamilyName.value);
+        localStorage.setItem("fatherName", orderFatherName.value);
+      }
+    });
+
+  //Если есть хотябы имя с локал сторедж, при следующей загрузке страницы в поля форм автоматически подставятся
+  // значения
+  if (nameStorage) {
+    orderName.value = nameStorage;
+    orderFamilyName.value = familyNameStorage;
+    orderFatherName.value = fatherNameStorage;
+  }
+}
+
 

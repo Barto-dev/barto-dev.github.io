@@ -44,7 +44,7 @@ function initMap() {
     let marker = new google.maps.Marker( {
       position: pos,
       map: myMap,
-      icon:'img/contacts/map-pin.svg'
+      icon:'../img/contacts/map-pin.svg'
     })
 
     let info = new google.maps.InfoWindow({
