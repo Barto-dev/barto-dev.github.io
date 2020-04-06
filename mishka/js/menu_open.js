@@ -45,6 +45,8 @@ if (modal && overlay && openModal) {
     //Открытие модального окна при клике на кнопку заказать
     openModal[i].addEventListener("click", function (evt) {
       evt.preventDefault();
+      //Удаляет анимацию ошибки чтоб не срабатывала при открытии
+      modal.classList.remove("modal-error");
       //Открывает модальное окно (так как его изначально нету)
       modal.classList.toggle("modal-opened");
       //Открывает оверлей
@@ -128,5 +130,3 @@ if (orderForm) {
     orderFatherName.value = fatherNameStorage;
   }
 }
-
-
