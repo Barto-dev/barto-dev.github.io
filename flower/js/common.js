@@ -83,7 +83,7 @@ $(document).ready(function(){
 let catalogCarousel = $('.catalog__container').owlCarousel({
     items:1,
     nav: false,
-
+    lazyLoad:true,
     dotsContainer: ".catalog__nav",
     responsive: {
       768: {
@@ -172,12 +172,21 @@ $(document).ready(function() {
     }
   });
 
-  //Закрытие модального окна при клике в любом другом месте
+  // Закрытие модального окна при клике в любом другом месте
   $(document).on('click', function(evt) {
       if (!$(evt.target).closest(".order-modal").length && evt.target !== openModalButton) {
         closeModal();
       }
     });
+
+  // Закрытие модального окна при клике в любом другом месте
+  document.addEventListener('click', function( event ) {
+    //Если цель клика не модальное окно И модальное окно не содержит цель клика и это не кнопка открыть,
+    // закрывает модальное окно
+    if (modalWindow !== event.target && !modalWindow.contains(event.target) && event.target !== openModalButton) {
+    closeModal();
+   }
+  });
 
   //Анимация ошибки при отправке не заполненой формы
   orderForm.addEventListener("submit", function (evt) {
@@ -190,4 +199,10 @@ $(document).ready(function() {
   })
 })();
 
+//Ленивая загрузка картинок
+let lazyLoadInstance = new LazyLoad({
+    elements_selector :'.lazy',
+    load_delay: 300
+});
 
+lazyLoadInstance.update();
