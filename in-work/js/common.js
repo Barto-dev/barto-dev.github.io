@@ -40,7 +40,7 @@ var mySwiper = new Swiper ('.swiper-container', {
  //    mousewheel: true,
     keyboard: true,
     direction: 'horizontal',
-    // autoHeight: true,
+    autoHeight: true,
     effect: "fade",
     speed: 500,
     fadeEffect: { crossFade: true },
@@ -63,5 +63,6 @@ for (let i = 0; i < menuButton.length; i++) {
     toggleMenu();
   })
 }
+
 
 
