@@ -12,6 +12,7 @@ let swiperContainer = document.querySelector(".swiper-container");
 let card = document.querySelectorAll(".skill-card");
 //Контейнер карточки навыков
 let cardContainer = document.querySelectorAll(".skill-card__container");
+let activeButton = document.querySelector(".site-navigation__link--active");
 
 //flipped skill card
 for (let i=0; i<card.length;i++) {
@@ -34,25 +35,26 @@ toggleMenuButton.addEventListener("click", toggleMenu);
 
 //Swiper
 var mySwiper = new Swiper ('.swiper-container', {
-
-    // Optional parameters
- // allowTouchMove:true,
- //    mousewheel: true,
     keyboard: true,
     direction: 'horizontal',
     autoHeight: true,
     effect: "fade",
     speed: 500,
     fadeEffect: { crossFade: true },
-    // slidesPerView: 1,
-
-    // If we need pagination
+    breakpoints: {
+      1200: {
+       allowTouchMove:false
+      }
+    }
   });
 
 
 //Навигация по слайдам при клике на элементе меню
 for (let i = 0; i < menuButton.length; i++) {
   menuButton[i].addEventListener("click", function () {
+    let activeButton = document.querySelector(".site-navigation__link--active");
+    activeButton.classList.remove("site-navigation__link--active");
+    menuButton[i].classList.add("site-navigation__link--active");
     mySwiper.slideTo(i);
     toggleMenu();
   })
