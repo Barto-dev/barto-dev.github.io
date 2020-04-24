@@ -2,11 +2,21 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,  initial-scale=1.0">
+  <meta name="description" content="Портфолио веб-разработчика Ильи Мельничука">
+  <meta name="viewport" content="width=device-width,  initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>My portfolio</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#603cba">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="preload" href="fonts/roboto-regular.woff2" as="font">
+  <link rel="preload" href="fonts/roboto-bold.woff2" as="font">
+  <link rel="preload" href="css/main.min.css" as="style">
   <link rel="stylesheet" href="css/main.min.css">
-<link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap&subset=cyrillic" rel="stylesheet">
 </head>
 <body class="main-page">
 <div style="display: none;">
@@ -37,7 +47,7 @@
         </ul>
       </nav>
       <div class="matrix">
-        <a href="matrix.html" class="matrix__enter" target="_blank" rel="noopener noreferrer">Enter to matrix?</a>
+        <a href="matrix.html" class="matrix__enter" target="_blank" rel="noopener noreferrer">Enter to Matrix?</a>
       </div>
     </div>
   </header>
@@ -60,7 +70,7 @@
         <section class="about-me swiper-slide">
           <h2 class="about-me__title">Illia <br> Melnychuk</h2>
           <div class="about-me__img-container">
-            <img src="img/photo.JPG" alt="Мое фото" class="about-me__photo">
+            <img src="img/photo.jpg" alt="Мое фото" class="about-me__photo swiper-lazy">
           </div>
           <p class="about-me__desc">До&nbsp;веб-разработки я&nbsp;5&nbsp;лет занимался системным администрированием.
 Веб-разработкой занимаюсь около полугода. К каждому проекту подхожу индивидуально и уделяю внимание даже самым незначительным деталям, будь то автофокус формы или сохранение имени пользователя в Local storage. Каждый день трачу несколько часов на изучение чего-то нового.
@@ -127,8 +137,7 @@
               <div class="skill-card">
                 <div class="skill-card__container">
                   <div class="skill-card__item skill-card__item--front">Javascript and frameworks</div>
-                  <div class="skill-card__item skill-card__item--back">Активно использую JavaScript и
-                    фреймворки</div>
+                  <div class="skill-card__item skill-card__item--back">JS, фреймворки в зависимости от задач</div>
                 </div>
               </div>
             </li>
@@ -164,28 +173,36 @@
           <h2 class="my-work__title">Мои работы</h2>
           <ul class="my-work__list">
             <li class="my-work__item">
-              <div class="my-work__container">
-                <img src="img/My-work/my-web.jpg" alt="" class="my-work__img" height="108">
-              </div>
-              <a href="" class="my-work__link">My website</a>
+              <a href="https://barto-dev.github.io/portfolio/" target="_blank" rel="noopener noreferrer">
+                <div class="my-work__container">
+                  <img src="img/My-work/my-web.jpg" alt="Мой веб-сайт" class="my-work__img swiper-lazy" height="108">
+                </div>
+                <span class="my-work__link">My website</span>
+              </a>
             </li>
             <li class="my-work__item">
-              <div class="my-work__container">
-                <img src="img/My-work/misha.jpg" alt="" class="my-work__img" height="108">
-              </div>
-              <a href="https://barto-dev.github.io/mishka/" class="my-work__link">Магазин "Mishka"</a>
+              <a href="https://barto-dev.github.io/mishka/" target="_blank" rel="noopener noreferrer">
+                <div class="my-work__container">
+                  <img src="img/My-work/misha.jpg" alt="Магазин мишка" class="my-work__img swiper-lazy" height="108">
+                </div>
+                <span class="my-work__link">Магазин "Mishka"</span>
+              </a>
             </li>
             <li class="my-work__item">
-              <div class="my-work__container">
-                <img src="img/My-work/flower.jpg" alt="" class="my-work__img" height="108">
-              </div>
-              <a href="https://barto-dev.github.io/flower/" class="my-work__link">Магазин "Весна всегда"</a>
+              <a href="https://barto-dev.github.io/flower/" target="_blank" rel="noopener noreferrer">
+                <div class="my-work__container">
+                  <img src="img/My-work/flower.jpg" alt="Магазин цветов" class="my-work__img swiper-lazy" height="108">
+                </div>
+                <span class="my-work__link">Магазин "Весна всегда"</span>
+              </a>
             </li>
             <li class="my-work__item">
-              <div class="my-work__container">
-                <img src="img/My-work/glacy-mob.jpg" alt="" class="my-work__img" height="108">
-              </div>
-              <a href="" class="my-work__link">Магазин мороженого</a>
+              <a href="https://barto-dev.github.io/glaccy/" target="_blank" rel="noopener noreferrer">
+                <div class="my-work__container">
+                  <img src="img/My-work/glacy-mob.jpg" alt="Магазин GlaccyShop" class="my-work__img swiper-lazy" height="108">
+                </div>
+                <span class="my-work__link">Магазин мороженого</span>
+              </a>
             </li>
 
           </ul>
@@ -198,28 +215,28 @@
   <footer class="main-footer">
     <ul class="social">
       <li class="social__item">
-        <a href="" class="social__link">
+        <a href="#" class="social__link" aria-label="Перейти в Инстаграм">
           <svg class="social__img" width="35" height="35">
             <use xlink:href="#icon-inst"></use>
           </svg>
         </a>
       </li>
       <li class="social__item">
-        <a href="" class="social__link">
+        <a href="#" class="social__link" aria-label="Перейти в Фейсбук">
           <svg class="social__img" width="35" height="35">
             <use xlink:href="#icon-fb"></use>
           </svg>
         </a>
       </li>
       <li class="social__item">
-        <a href="" class="social__link">
+        <a href="#" class="social__link" aria-label="Перейти в ВК">
           <svg class="social__img" width="35" height="35">
             <use xlink:href="#icon-vk"></use>
           </svg>
         </a>
       </li>
       <li class="social__item">
-        <a href="" class="social__link"></a>
+        <a href="#" class="social__link" aria-label="Перейти в WhatsApp"></a>
         <svg class="social__img" width="35" height="35">
           <use xlink:href="#icon-whatsapp"></use>
         </svg>
@@ -229,6 +246,5 @@
 </div>
 
 <script src="js/scripts.min.js"></script>
-<script src="js/common.js"></script>
 </body>
 </html>

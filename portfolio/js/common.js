@@ -40,6 +40,10 @@ var mySwiper = new Swiper ('.swiper-container', {
     autoHeight: true,
     effect: "fade",
     speed: 500,
+    // preloadImages: false,
+    // lazy: {
+    //   loadPrevNext: true
+    // },
     fadeEffect: { crossFade: true },
     breakpoints: {
       1200: {
