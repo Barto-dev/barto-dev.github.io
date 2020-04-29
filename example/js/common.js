@@ -9,7 +9,7 @@ let line_4 = document.querySelector('.toggle-button__line--4');
 //Timeline
 let circle = document.querySelector('.circle__wrapper');
 let thumbs = document.querySelectorAll('.circle__thumb');
-
+let timeLine = document.querySelector('.timeline');
 
 //Переключение меню
 function toggleMenu() {
@@ -112,9 +112,9 @@ function moveCircle(thumb) {
   circle.style.cssText = `transform: rotate(${calculateRotateDegree(thumb)}deg)`;
 }
 
-
+//Индикатор скролла
 var indicator = new WheelIndicator({
-  elem: document.querySelector('.timeline'),
+  elem: timeLine,
   callback: function(evt){
     let nextDate = document.querySelector('.circle__thumb--active').nextElementSibling;
     let prevDate = document.querySelector('.circle__thumb--active').previousElementSibling;
@@ -128,11 +128,9 @@ var indicator = new WheelIndicator({
 
   }
 });
+indicator.getOption('preventMouse');
 
-//The method call
-indicator.getOption('preventMouse'); // true
-
-
+//Свайпер
 var mySwiper = new Swiper(".swiper-container", {
   centeredSlides: true,
   slidesPerView: 1,
@@ -149,4 +147,17 @@ var mySwiper = new Swiper(".swiper-container", {
 });
 
 
-
+timeLine.addEventListener('swiped-left', function(e) {
+  let nextDate = document.querySelector('.circle__thumb--active').nextElementSibling;
+  if (nextDate) {
+    moveCircle(scrollDownRotate());
+    mySwiper.slideNext();
+  }
+});
+timeLine.addEventListener('swiped-right', function(e) {
+    let prevDate = document.querySelector('.circle__thumb--active').previousElementSibling;
+    if (prevDate) {
+      mySwiper.slidePrev();
+      moveCircle(scrollUpRotate());
+    }
+});
