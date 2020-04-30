@@ -10,6 +10,12 @@ let line_4 = document.querySelector('.toggle-button__line--4');
 let circle = document.querySelector('.circle__wrapper');
 let thumbs = document.querySelectorAll('.circle__thumb');
 let timeLine = document.querySelector('.timeline');
+let timelineScroll = document.querySelector('.timeline__wrapper');
+
+//Breakpoints
+let mobileBreakpoint = window.matchMedia("(max-width: 767px)");
+let tabletBreakpoint = window.matchMedia("(min-width: 768px)");
+
 
 //Переключение меню
 function toggleMenu() {
@@ -75,17 +81,6 @@ function calculateRotateDegree(dateArr) {
   return parseInt(getNumberRotate, 10);
 }
 
-//evt: клик по дате
-for (let i = 0; i < thumbs.length; i ++) {
-  thumbs[i].addEventListener('click', function () {
-    let activeDate = document.querySelector('.circle__thumb--active');
-    activeDate.classList.remove('circle__thumb--active');
-    thumbs[i].classList.add('circle__thumb--active');
-    moveCircle(thumbs[i]);
-    mySwiper.slideTo(i);
-  })
-}
-
 // Высчитывает градус поворота при скролле вниз и меняет active на следующий элемент
 function scrollDownRotate() {
   let activeDate = document.querySelector('.circle__thumb--active');
@@ -106,29 +101,10 @@ function scrollUpRotate() {
   }
 }
 
-
 //Двигает таймлайн
 function moveCircle(thumb) {
   circle.style.cssText = `transform: rotate(${calculateRotateDegree(thumb)}deg)`;
 }
-
-//Индикатор скролла
-var indicator = new WheelIndicator({
-  elem: timeLine,
-  callback: function(evt){
-    let nextDate = document.querySelector('.circle__thumb--active').nextElementSibling;
-    let prevDate = document.querySelector('.circle__thumb--active').previousElementSibling;
-    if (evt.direction == 'down' && nextDate) {
-      moveCircle(scrollDownRotate());
-      mySwiper.slideNext();
-    } else if (evt.direction == 'up' && prevDate) {
-      mySwiper.slidePrev();
-      moveCircle(scrollUpRotate());
-    }
-
-  }
-});
-indicator.getOption('preventMouse');
 
 //Свайпер
 var mySwiper = new Swiper(".swiper-container", {
@@ -141,23 +117,70 @@ var mySwiper = new Swiper(".swiper-container", {
   initialSlide: 4,
   allowTouchMove:false,
   speed: 500
-  // loop: true,
-  // loopedSlides: 4,
-
 });
 
-
-timeLine.addEventListener('swiped-left', function(e) {
-  let nextDate = document.querySelector('.circle__thumb--active').nextElementSibling;
-  if (nextDate) {
-    moveCircle(scrollDownRotate());
-    mySwiper.slideNext();
+//Отслеживание клика по дате
+for (let i = 0; i < thumbs.length; i ++) {
+  if (tabletBreakpoint.matches) {
+    thumbs[i].addEventListener('click', function () {
+      let activeDate = document.querySelector('.circle__thumb--active');
+      activeDate.classList.remove('circle__thumb--active');
+      thumbs[i].classList.add('circle__thumb--active');
+      moveCircle(thumbs[i]);
+      mySwiper.slideTo(i);
+    })
+  }
+}
+//Отслеживание скролла
+var indicator = new WheelIndicator({
+  elem: timelineScroll,
+  callback: function(evt){
+    let nextDate = document.querySelector('.circle__thumb--active').nextElementSibling;
+    let prevDate = document.querySelector('.circle__thumb--active').previousElementSibling;
+    if (evt.direction == 'down' && nextDate) {
+      moveCircle(scrollDownRotate());
+      mySwiper.slideNext();
+    } else if (evt.direction == 'up' && prevDate) {
+      mySwiper.slidePrev();
+      moveCircle(scrollUpRotate());
+    }
   }
 });
-timeLine.addEventListener('swiped-right', function(e) {
+
+// Отслеживание свайпов
+// timeLine.addEventListener('swiped-left', function(evt) {
+//   let nextDate = document.querySelector('.circle__thumb--active').nextElementSibling;
+//   if (nextDate) {
+//     moveCircle(scrollDownRotate());
+//     mySwiper.slideNext();
+//   }
+// });
+// timeLine.addEventListener('swiped-right', function(evt) {
+//     let prevDate = document.querySelector('.circle__thumb--active').previousElementSibling;
+//     if (prevDate) {
+//       mySwiper.slidePrev();
+//       moveCircle(scrollUpRotate());
+//     }
+// });
+
+
+
+timeLine.addEventListener('swiped-left', function(evt) {
+  if (mobileBreakpoint.matches) {
+    let nextDate = document.querySelector('.circle__thumb--active').nextElementSibling;
+    if (nextDate) {
+      moveCircle(scrollDownRotate());
+      mySwiper.slideNext();
+    }
+  }
+});
+
+timeLine.addEventListener('swiped-right', function(evt) {
+  if (mobileBreakpoint.matches) {
     let prevDate = document.querySelector('.circle__thumb--active').previousElementSibling;
     if (prevDate) {
       mySwiper.slidePrev();
       moveCircle(scrollUpRotate());
     }
+ }
 });

@@ -1,10 +1,20 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en"  class="no-js">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Тестовое задание на вакансию front-end developer">
   <title>Test</title>
+  <link rel="preload" href="fonts/opensans-regular.woff2" as="font">
+  <link rel="preload" href="fonts/opensans-semibold.woff2" as="font">
+  <link rel="preload" href="fonts/poppins-bold.woff" as="font">
+  <link rel="preload" href="fonts/poppins-light.woff2" as="font">
+  <link rel="stylesheet" href="css/normalize.min.css">
   <link rel="stylesheet" href="css/main.min.css">
+<!--  Проверка, включен ли js, если нет, версия сайта немного другая-->
+  <script>
+      document.documentElement.classList.remove("no-js");
+  </script>
 </head>
 <body>
   <div class="container">
@@ -21,16 +31,16 @@
           <div class="main-nav__site-navigation site-navigation">
             <ul class="site-navigation__list">
               <li class="site-navigation__item">
-                <a href="" class="site-navigation__link">About</a>
+                <a href="#" class="site-navigation__link">About</a>
               </li>
               <li class="site-navigation__item">
-                <a href="" class="site-navigation__link">Testimonials</a>
+                <a href="#" class="site-navigation__link">Testimonials</a>
               </li>
               <li class="site-navigation__item">
-                <a href="" class="site-navigation__link">Pricing</a>
+                <a href="#" class="site-navigation__link">Pricing</a>
               </li>
               <li class="site-navigation__item">
-                <a href="" class="site-navigation__link">Contact</a>
+                <a href="#" class="site-navigation__link">Contact</a>
               </li>
             </ul>
 
@@ -136,8 +146,12 @@ Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium dolor
     </footer>
 
   </div>
-
+  <div class="ie-follback">Что это за динозавр ты открыл?Уже даже Microsoft 9 марта решила отказаться
+    <a href="https://github.com/microsoft/ChakraCore/issues/6384">от
+      дальнейшей разработки движка ChakraCore и передать его сообществу
+    </a>, переходи на сторону современных браузеров, у
+    нас есть печеньки:)
+  </div>
   <script src="js/scripts.min.js"></script>
-  <script src="js/common.js"></script>
 </body>
 </html>
