@@ -1,0 +1,27 @@
+//general
+@import "mixins";
+@import "variables";
+@import "font";
+@import "general";
+@import "animation";
+
+//elements
+@import "blocks/btn";
+
+//header
+@import "blocks/container";
+@import "blocks/main-header";
+@import "blocks/toggle-btn";
+@import "blocks/main-nav";
+@import "blocks/site-navigation";
+@import "blocks/promo";
+
+//main
+@import "blocks/projects";
+@import "blocks/project-card";
+@import "blocks/pagination";
+@import "blocks/send-message";
+
+//footer
+@import "blocks/main-footer";
+@import "blocks/contacts";

@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+.content-box-component {
+  box-sizing: content-box;
+}
+
+body {
+  margin: 0 auto;
+  font-family: "Montserrat", "Arial", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 15px;
+
+  color: $text-color;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  clip: rect(0 0 0 0);
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+svg path {
+  fill: inherit;
+  stroke: inherit;
+}
+//Почему inherit
+//https://tympanus.net/codrops/2015/07/16/styling-svg-use-content-css/

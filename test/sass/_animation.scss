@@ -1,0 +1,39 @@
+@keyframes up-down {
+
+  from {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fire {
+
+  0% {
+    text-shadow:
+      0 0 10px #ffae34,
+      5px -5px 15px #feec85,
+      -10px -10px 40px #ffae34,
+      10px -20px 25px #ec760c,
+      -10px -30px 30px #cd4606,
+      0 -40px 35px #973716,
+      5px -22px 20px #451b0e;
+  }
+
+  100% {
+    text-shadow:
+      0 0 10px #ffae34,
+      5px -5px 15px #fefcc9,
+      -10px -10px 20px #feec85,
+      22px -42px 30px #ffae34,
+      -22px -29px 25px #ec760c,
+      0 -41px 20px #cd4606,
+      5px -22px 20px #973716;
+  }
+}
