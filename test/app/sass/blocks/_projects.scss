@@ -60,3 +60,30 @@
   outline-color: rgb(77, 144, 254);
   outline-offset: 16px;
 }
+
+@media (min-width: $large-device) {
+
+  .projects__title {
+    display: block;
+    font-size: 30px;
+    line-height: 37px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .projects__filter-item {
+    margin-left: 30px;
+  }
+
+  .projects__filter-name {
+    font-size: 16px;
+  }
+
+  .projects__header {
+    padding: 85px 120px 70px;
+    width: 1440px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
