@@ -36,7 +36,7 @@
 }
 
 .promo__achieve-item {
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .promo__scroll-btn {
@@ -58,16 +58,20 @@
 @media (min-width: $large-device) {
 
   .promo__title {
+    margin-bottom: 55px;
     font-size: 60px;
   }
+
   .promo__desc {
     max-width: 765px;
+    margin-bottom: 130px;
     font-size: 14px;
     line-height: 21px;
   }
 
   .promo__achieve-list {
     max-width: 680px;
+    margin-bottom: 110px;
   }
 
   .promo__achieve-item {

@@ -1,31 +1,33 @@
 .user-navigation {
-  @include list-reset;
   display: none;
 }
 
-.user-navigation__link {
-  display: block;
-  padding: 25px;
-  font-size: 12px;
-  color: #ffffff;
-  text-align: center;
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  transition: color 330ms linear;
-
-
-  &:hover {
-    color: #56ccf2;
-  }
-}
 
 @media (min-width: $large-device) {
 
   .user-navigation {
-    @include list-reset;
     display: flex;
     justify-content: space-between;
   }
 
+  .user-navigation__item {
+    margin-left: 20px;
+  }
+
+
+  .user-navigation__link {
+    display: block;
+    padding: 15 5px;
+    font-size: 12px;
+    color: #ffffff;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: color 330ms linear;
+
+    &:hover {
+      color: #56ccf2;
+    }
+  }
 }

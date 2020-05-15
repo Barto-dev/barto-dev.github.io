@@ -77,7 +77,7 @@
       <a href="#" class="main-header__logo">
         <img src="img/logo.svg" alt="Логотип" class="main-header__img">
       </a>
-      <ul class="user-navigation">
+      <ul class="main-header__user-navigation user-navigation">
         <li class="user-navigation__item">
           <a href="" class="user-navigation__link">Activitis</a>
         </li>
@@ -124,9 +124,9 @@
         </li>
       </ul>
       <div class="main-header__choice-language">
-        <button class="main-header__language main-header__language--current">УКР</button>
-        <button class="main-header__language">ENG</button>
-        <button class="main-header__language">RUS</button>
+        <label class="main-header__language main-header__language--current"><input type="radio" class="visually-hidden" name="language" value="ukr">УКР</label>
+        <label class="main-header__language hidden"><input type="radio" class="visually-hidden" name="language" value="eng">ENG</label>
+        <label class="main-header__language hidden"><input type="radio" class="visually-hidden" name="language" value="ru">RUS</label>
       </div>
     </div>
 
@@ -180,8 +180,12 @@
 
       <div class="project-card projects__card" data-category="finance">
         <div class="project-card__img-container">
-          <img src="img/mob_project_card1_1x.jpg" alt="СТО “Шмітц Каргобул Україна”" class="project-card__img"
+          <picture>
+            <source media="(min-width:1440px)"
+                  srcset="img/desc_project_card1_1x.jpg 1x, img/desc_project_card1_2x.jpg 2x">
+            <img src="img/mob_project_card1_1x.jpg" alt="СТО “Шмітц Каргобул Україна”" class="project-card__img"
                srcset="img/mob_project_card1_2x.jpg 2x">
+          </picture>
           <p class="project-card__desc-wrapper">
             <span class="project-card__img-desc">Фінанси</span>
           </p>
@@ -206,17 +210,20 @@
             </span>
             <span class="project-card__info-desc">Шмитц Каргобул Украина <br> ООО</span>
           </p>
-          <button class="project-card__look-btn btn">переглянути проект</button>
+          <button class="project-card__look-btn btn">
+            <span>переглянути проект</span></button>
         </div>
       </div>
 
-      <div class="project-card projects__card" data-category="realty">
+      <div class="project-card projects__card project-card--odd" data-category="realty">
         <div class="project-card__img-container">
-          <img src="img/mob_project_card2_1x.jpg"
-               alt="СТО “Шмітц Каргобул Україна”"
-               class="project-card__img"
+          <picture>
+            <source media="(min-width:1440px)"
+                  srcset="img/desc_project_card2_1x.jpg 1x, img/desc_project_card2_2x.jpg 2x">
+            <img src="img/mob_project_card2_1x.jpg" alt="СТО “Шмітц Каргобул Україна”" class="project-card__img"
                srcset="img/mob_project_card2_2x.jpg 2x">
-          <p class="project-card__desc-wrapper project-card__desc-wrapper--right">
+          </picture>
+          <p class="project-card__desc-wrapper project-card__desc-wrapper--right project-card__desc-wrapper--blue">
             <span class="project-card__img-desc">Нерухомість</span>
           </p>
         </div>
@@ -240,15 +247,57 @@
             </span>
             <span class="project-card__info-desc">Шмитц Каргобул Украина <br> ООО</span>
           </p>
-          <button class="project-card__look-btn btn btn--blue">переглянути проект</button>
+          <button class="project-card__look-btn btn btn--blue">
+            <span>переглянути проект</span></button>
         </div>
       </div>
 
-      <div class="project-card projects__card" data-category="finance">
+      <div class="project-card projects__card" data-category="realty">
         <div class="project-card__img-container">
-          <img src="img/mob_project_card1_1x.jpg" alt="СТО “Шмітц Каргобул Україна”" class="project-card__img"
+          <picture>
+            <source media="(min-width:1440px)"
+                  srcset="img/desc_project_card1_1x.jpg 1x, img/desc_project_card1_2x.jpg 2x">
+            <img src="img/mob_project_card1_1x.jpg" alt="СТО “Шмітц Каргобул Україна”" class="project-card__img"
                srcset="img/mob_project_card1_2x.jpg 2x">
-          <p class="project-card__desc-wrapper">
+          </picture>
+          <p class="project-card__desc-wrapper project-card__desc-wrapper--blue">
+            <span class="project-card__img-desc">Нерухомість</span>
+          </p>
+        </div>
+        <div class="project-card__info-container">
+          <h3 class="project-card__title">СТО “Шмітц Каргобул Україна”</h3>
+          <p class="project-card__info-wrapper">
+            <span class="project-card__info-title project-card__info-title--address">
+              <svg class="project-card__client-icon project-card__client-icon--blue" width="14" height="14">
+                <use xlink:href="#icon-address"></use>
+              </svg>
+              Адреса
+            </span>
+            <span class="project-card__info-desc">бульвар Вацлава Гавела, <br> 6з, Київ, 03067</span>
+          </p>
+          <p class="project-card__info-wrapper">
+            <span class="project-card__info-title">
+              <svg class="project-card__client-icon project-card__client-icon--blue" width="14" height="14">
+                <use xlink:href="#icon-client"></use>
+              </svg>
+              Клієнт
+            </span>
+            <span class="project-card__info-desc">Шмитц Каргобул Украина <br> ООО</span>
+          </p>
+          <button class="project-card__look-btn btn btn--blue">
+            <span>переглянути проект</span></button>
+        </div>
+      </div>
+
+      <div class="project-card projects__card project-card--odd" data-category="finance">
+        <div class="project-card__img-container">
+          <picture>
+            <source media="(min-width:1440px)"
+                  srcset="img/desc_project_card1_1x.jpg 1x, img/desc_project_card1_2x.jpg 2x">
+            <img src="img/mob_project_card1_1x.jpg" alt="СТО “Шмітц Каргобул Україна”" class="project-card__img"
+               srcset="img/mob_project_card1_2x.jpg 2x">
+          </picture>
+          <p class="project-card__desc-wrapper project-card__desc-wrapper--right">
             <span class="project-card__img-desc">Фінанси</span>
           </p>
         </div>
@@ -272,7 +321,8 @@
             </span>
             <span class="project-card__info-desc">Шмитц Каргобул Украина <br> ООО</span>
           </p>
-          <button class="project-card__look-btn btn">переглянути проект</button>
+          <button class="project-card__look-btn btn">
+            <span>переглянути проект</span></button>
         </div>
       </div>
     </div>
@@ -286,8 +336,8 @@
           <li class="pagination__item">
             <button class="pagination__button">1</button>
           </li>
-          <li class="pagination__item">
-            <button class="pagination__button pagination__button--current">2</button>
+          <li class="pagination__item pagination__button--current">
+            <button class="pagination__button">2</button>
           </li>
           <li class="pagination__item">
             <button class="pagination__button">3</button>
@@ -311,7 +361,8 @@
     <div class="send-message__container container">
       <p class="send-message__desc">Є проект, де може знадобитись наша консультація? Пишіть нам на
         office@activitis.com.ua або залиште повідомлення у зворотній формі</p>
-      <button class="send-message__btn btn btn--lightblue">Написати повідомлення</button>
+      <button class="send-message__btn btn--lightblue">
+        <span>Написати повідомлення</span></button>
     </div>
   </section>
 
@@ -322,7 +373,7 @@
     <a href="" class="main-footer__logo">
       <img src="img/logo.svg" alt="Логотип" class="main-footer__img" width="120" height="30">
     </a>
-    <ul class="contacts">
+    <ul class="contacts main-footer__contacts">
       <li class="contacts__item">
         <a href="" class="contacts__link">
           <svg class="contacts__link-icon" width="18" height="22">
@@ -363,8 +414,7 @@
     </p>
     <p class="main-footer__copyright">
       <span class="main-footer__copyright-desc">© 2019 Всі права захищено.</span>
-      <a href="https://sun.agency/" class="main-footer__copyright-desc">Активність від
-
+      <a href="https://sun.agency/" class="main-footer__copyright-desc main-footer__copyright-desc--sun">Активність від
         <span class="main-footer__copyright-fire">Сонця</span>
         <img class="main-footer__copyright-sun" src="img/summertime.svg" alt="Иконка солнца" width="16" height="16">
       </a>

@@ -26,6 +26,9 @@
 .project-card__desc-wrapper--right {
   right: 0;
   left: initial;
+}
+
+.project-card__desc-wrapper--blue {
   background-color: rgba(119, 160, 226, 0.6);
 }
 
@@ -82,3 +85,41 @@
   margin-top: 35px;
 }
 
+@media (min-width: $large-device) {
+
+  .project-card {
+    flex-direction: row;
+    width: 100%;
+    max-width: 1440px;
+  }
+
+  .project-card--odd {
+
+    .project-card__img-container {
+      order: 1;
+    }
+  }
+
+  .project-card__desc-wrapper {
+    height: 435px;
+  }
+
+  .project-card__info-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 598px;
+    min-height: 435px;
+    align-items: flex-start;
+    padding: 110px 90px 35px;
+  }
+
+  .project-card__info-wrapper {
+    width: 40%;
+    margin: 0;
+  }
+
+  .project-card__title {
+    width: 100%;
+  }
+}

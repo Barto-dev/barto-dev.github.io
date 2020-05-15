@@ -12,7 +12,6 @@
   border: none;
   border-radius: 50px;
 
-
   &:hover {
     background: linear-gradient(135deg, #0f8a8a 15.25%, #70c299 82.75%);
   }
@@ -44,3 +43,50 @@
   }
 }
 
+@media (min-width: $large-device) {
+
+  .btn {
+    background-color: #6fcf97;
+    display: inline-block;
+    //Регулирует толщину рамки
+    padding: 2px;
+
+    &:hover,
+    &:focus {
+      outline: none;
+      background: linear-gradient(135deg, #0F8A8A 15.25%, #70C299 82.75%);
+    }
+
+    span {
+      color: #6fcf97;
+      background: #fff;
+      display: block;
+      padding: 15px 10px;
+      border-radius: 50px;
+    }
+  }
+
+  .btn--blue {
+
+    background-color: #77a0e2;
+    display: inline-block;
+    //Регулирует толщину рамки
+    padding: 2px;
+
+    span {
+      color: #77a0e2;
+    }
+
+    &:hover {
+      background: linear-gradient(135deg, #56CCF2 15.25%, #84B0C7 82.75%);
+    }
+
+    &:hover span {
+      color: #73BAD6;
+    }
+
+    &:active span {
+      color: rgba(#73BAD6, 0.9);
+    }
+  }
+}

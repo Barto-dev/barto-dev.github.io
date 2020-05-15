@@ -55,20 +55,25 @@
 }
 
 .projects__filter-button:focus + .projects__filter-name {
-  outline-width: 5px;
-  outline-style: auto;
-  outline-color: rgb(77, 144, 254);
-  outline-offset: 16px;
+  opacity: 0.7;
 }
 
 @media (min-width: $large-device) {
 
+  .projects__container {
+    padding: 0 120px;
+  }
+
+  .projects__card {
+    margin-bottom: 70px;
+  }
+
   .projects__title {
     display: block;
     font-size: 30px;
+    font-weight: 700;
     line-height: 37px;
     text-transform: uppercase;
-    font-weight: 700;
   }
 
   .projects__filter-item {
@@ -80,10 +85,10 @@
   }
 
   .projects__header {
-    padding: 85px 120px 70px;
-    width: 1440px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 60px 0 40px;
   }
 }

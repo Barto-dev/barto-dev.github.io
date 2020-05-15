@@ -22,3 +22,10 @@
     color: #56ccf2;
   }
 }
+
+@media (min-width: $large-device) {
+
+  .site-navigation__link {
+    font-size: 25px;
+  }
+}
