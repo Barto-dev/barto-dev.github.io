@@ -2,31 +2,32 @@
   @include list-reset;
   display: flex;
   flex-direction: column;
+}
 
-  &__item {
-    margin-bottom: 10px;
+.contacts__item {
+  margin-bottom: 10px;
+}
+
+.contacts__link {
+  position: relative;
+  display: block;
+  color: #ffffff;
+  text-decoration: none;
+  transition: all 130ms linear;
+
+  &:hover {
+    color: #56ccf2;
   }
 
-  &__link {
-    position: relative;
-    display: block;
-    color: #ffffff;
-    text-decoration: none;
-    transition: all 130ms linear;
-
-    &:hover {
-      color: #56ccf2;
-    }
-
-    &:active {
-      opacity: 0.9;
-    }
-  }
-
-  &__link-icon {
-    position: absolute;
-    top: -3px;
-    left: -45px;
-    fill: #fff;
+  &:active {
+    opacity: 0.9;
   }
 }
+
+.contacts__link-icon {
+  position: absolute;
+  top: -3px;
+  left: -45px;
+  fill: #fff;
+}
+

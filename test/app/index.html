@@ -1,18 +1,22 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html lang="ru">
 
 <head>
   <meta charset="utf-8">
-  <title></title>
-  <meta name="description" content="">
+  <title>Тестовое задание</title>
+  <meta name="description" content="Тестовое задание">
+  <link rel="preload" href="fonts/montserrat-bold.woff2" as="font">
+  <link rel="preload" href="fonts/montserrat-regular.woff2" as="font">
+  <link rel="preload" href="fonts/prata-regular.woff2" as="font">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Place favicon.ico in the root directory -->
-
   <link rel="stylesheet" href="css/normalize.min.css">
   <link rel="stylesheet" href="css/main.min.css">
-
   <meta name="theme-color" content="#fafafa">
+  <!--  Полифил для работы респонсив изображений в старых браузерах-->
+  <script> document.createElement( "picture" );</script>
+  <script async src="js/picturefill.min.js"></script>
+  <script src="js/svg4everybody.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@15.1.1/dist/lazyload.min.js"></script>
 </head>
 <body>
 <div style="display: none;">
@@ -94,52 +98,87 @@
       <nav class="main-header__nav main-nav">
         <ul class="site-navigation">
           <li class="site-navigation__item">
-            <a href="" class="site-navigation__link">Activitis</a>
+            <a href="#" class="site-navigation__link">Activitis</a>
           </li>
           <li class="site-navigation__item">
-            <a href="" class="site-navigation__link">Фінансові послуги</a>
+            <a href="#" class="site-navigation__link">Фінансові послуги</a>
           </li>
           <li class="site-navigation__item">
-            <a href="" class="site-navigation__link">управління нерухомістю</a>
+            <a href="#" class="site-navigation__link">управління нерухомістю</a>
           </li>
           <li class="site-navigation__item">
-            <a href="" class="site-navigation__link">Контакти</a>
+            <a href="#" class="site-navigation__link">Контакти</a>
           </li>
         </ul>
       </nav>
       <ul class="main-header__contacts">
         <li class="main-header__contact-item">
-          <a href="" class="main-header__contact-link">
+          <a href="#" class="main-header__contact-link" aria-label="Написать нам на почту">
             <svg class="main-header__contact-img main-header__mail-icon" width="26" height="26">
               <use xlink:href="#icon-mail"></use>
             </svg>
           </a>
         </li>
         <li class="main-header__contact-item">
-          <a href="" class="main-header__contact-link">
+          <a href="#" class="main-header__contact-link" aria-label="Написать нам в фейсбук">
             <svg class="main-header__contact-img" width="26" height="26">
               <use xlink:href="#icon-facebook"></use>
             </svg>
           </a>
         </li>
       </ul>
-      <div class="main-header__choice-language">
-        <label class="main-header__language main-header__language--current"><input type="radio" class="visually-hidden" name="language" value="ukr">УКР</label>
-        <label class="main-header__language hidden"><input type="radio" class="visually-hidden" name="language" value="eng">ENG</label>
-        <label class="main-header__language hidden"><input type="radio" class="visually-hidden" name="language" value="ru">RUS</label>
+
+      <div class="main-header__choice-language choice-language">
+        <button class="choice-language__btn">UKR</button>
+        <div class="choice-language__wrapper hidden">
+          <label class="choice-language__language">
+            <input type="radio"
+                   class="visually-hidden"
+                   name="language"
+                   value="uk"
+                   checked>UKR
+          </label>
+          <label class="choice-language__language">
+            <input type="radio"
+                   class="visually-hidden"
+                   name="language"
+                   value="en">ENG
+          </label>
+          <label class="choice-language__language">
+            <input type="radio"
+                   class="visually-hidden"
+                   name="language"
+                   value="ru">RUS
+          </label>
+        </div>
       </div>
     </div>
 
     <section class="promo">
-      <h1 class="promo__title">Наші проекти
-      </h1>
-      <p class="promo__desc">Amet sit anim ea adipisicing quis tempor cillum. Occaecat proident ipsum incididunt nostrud
+      <h1 class="promo__title js-lang" lang="uk">Наші проекти</h1>
+      <h1 class="promo__title js-lang hidden" lang="en">Our projects</h1>
+      <h1 class="promo__title js-lang hidden" lang="ru">Наши проекты</h1>
+            <p class="promo__desc js-lang" lang="uk">Це слова і букви були змінені додаванням або видаленням, так навмисно роблять його зміст безглуздо, це не є справжньою, правильно чи зрозумілою Латинської більше. У той час як Lorem Ipsum все ще нагадує класичну латину, він насправді не має ніякого значення.Зовнішність європейських мовах.</p>
+      <p class="promo__desc js-lang hidden" lang="en">Amet sit anim ea adipisicing quis tempor cillum. Occaecat proident ipsum incididunt nostrud
         consectetur velit deserunt nulla cupidatat minim reprehenderit. Ullamco eu quis qui nostrud dolor incididunt
         laboris magna aliquip occaecat do aute velit. Id quis velit eu dolor enim sit ut ullamco.</p>
+      <p class="promo__desc js-lang hidden" lang="ru">Идейные соображения высшего порядка, а также сложившаяся структура организации влечет за собой процесс внедрения и модернизации модели развития. Товарищи! новая модель организационной деятельности требуют от нас анализа существенных финансовых и административных условий.  </p>
       <ul class="promo__achieve-list">
-        <li class="promo__achieve-item">30 проектів</li>
-        <li class="promo__achieve-item">20 реалізованих</li>
-        <li class="promo__achieve-item">10 в роботі</li>
+        <li class="promo__achieve-item">
+          <span class="js-lang" lang="uk">30 проектів</span>
+          <span class="js-lang hidden" lang="en">30 projects</span>
+          <span class="js-lang hidden" lang="ru">30 проектов</span>
+        </li>
+        <li class="promo__achieve-item">
+          <span class="js-lang" lang="uk">20 реалізованих</span>
+          <span class="js-lang hidden" lang="en">20 implemented</span>
+          <span class="js-lang hidden" lang="ru">20 Реализованых</span>
+        </li>
+        <li class="promo__achieve-item">
+          <span class="js-lang" lang="uk">10 в роботі</span>
+          <span class="js-lang hidden" lang="en">10 in work</span>
+          <span class="js-lang hidden" lang="ru">10 в работе</span>
+        </li>
       </ul>
       <button class="promo__scroll-btn" aria-label="Проскролить вниз">
         <svg class="promo__scroll-img" width="50" height="50">
@@ -182,9 +221,9 @@
         <div class="project-card__img-container">
           <picture>
             <source media="(min-width:1440px)"
-                  srcset="img/desc_project_card1_1x.jpg 1x, img/desc_project_card1_2x.jpg 2x">
+                    srcset="img/desc_project_card1_1x.jpg 1x, img/desc_project_card1_2x.jpg 2x">
             <img src="img/mob_project_card1_1x.jpg" alt="СТО “Шмітц Каргобул Україна”" class="project-card__img"
-               srcset="img/mob_project_card1_2x.jpg 2x">
+                 srcset="img/mob_project_card1_2x.jpg 2x">
           </picture>
           <p class="project-card__desc-wrapper">
             <span class="project-card__img-desc">Фінанси</span>
@@ -211,7 +250,8 @@
             <span class="project-card__info-desc">Шмитц Каргобул Украина <br> ООО</span>
           </p>
           <button class="project-card__look-btn btn">
-            <span>переглянути проект</span></button>
+            <span>переглянути проект</span>
+          </button>
         </div>
       </div>
 
@@ -219,9 +259,9 @@
         <div class="project-card__img-container">
           <picture>
             <source media="(min-width:1440px)"
-                  srcset="img/desc_project_card2_1x.jpg 1x, img/desc_project_card2_2x.jpg 2x">
-            <img src="img/mob_project_card2_1x.jpg" alt="СТО “Шмітц Каргобул Україна”" class="project-card__img"
-               srcset="img/mob_project_card2_2x.jpg 2x">
+                    data-srcset="img/desc_project_card2_1x.jpg 1x, img/desc_project_card2_2x.jpg 2x">
+            <img data-src="img/mob_project_card2_1x.jpg" alt="СТО “Шмітц Каргобул Україна”" class="project-card__img lazy"
+                 data-srcset="img/mob_project_card2_2x.jpg 2x">
           </picture>
           <p class="project-card__desc-wrapper project-card__desc-wrapper--right project-card__desc-wrapper--blue">
             <span class="project-card__img-desc">Нерухомість</span>
@@ -248,7 +288,8 @@
             <span class="project-card__info-desc">Шмитц Каргобул Украина <br> ООО</span>
           </p>
           <button class="project-card__look-btn btn btn--blue">
-            <span>переглянути проект</span></button>
+            <span>переглянути проект</span>
+          </button>
         </div>
       </div>
 
@@ -256,9 +297,9 @@
         <div class="project-card__img-container">
           <picture>
             <source media="(min-width:1440px)"
-                  srcset="img/desc_project_card1_1x.jpg 1x, img/desc_project_card1_2x.jpg 2x">
-            <img src="img/mob_project_card1_1x.jpg" alt="СТО “Шмітц Каргобул Україна”" class="project-card__img"
-               srcset="img/mob_project_card1_2x.jpg 2x">
+                    data-srcset="img/desc_project_card1_1x.jpg 1x, img/desc_project_card1_2x.jpg 2x">
+            <img data-src="img/mob_project_card1_1x.jpg" alt="СТО “Шмітц Каргобул Україна”" class="project-card__img lazy"
+                 data-srcset="img/mob_project_card1_2x.jpg 2x">
           </picture>
           <p class="project-card__desc-wrapper project-card__desc-wrapper--blue">
             <span class="project-card__img-desc">Нерухомість</span>
@@ -285,7 +326,8 @@
             <span class="project-card__info-desc">Шмитц Каргобул Украина <br> ООО</span>
           </p>
           <button class="project-card__look-btn btn btn--blue">
-            <span>переглянути проект</span></button>
+            <span>переглянути проект</span>
+          </button>
         </div>
       </div>
 
@@ -293,9 +335,9 @@
         <div class="project-card__img-container">
           <picture>
             <source media="(min-width:1440px)"
-                  srcset="img/desc_project_card1_1x.jpg 1x, img/desc_project_card1_2x.jpg 2x">
-            <img src="img/mob_project_card1_1x.jpg" alt="СТО “Шмітц Каргобул Україна”" class="project-card__img"
-               srcset="img/mob_project_card1_2x.jpg 2x">
+                    data-srcset="img/desc_project_card1_1x.jpg 1x, img/desc_project_card1_2x.jpg 2x">
+            <img data-src="img/mob_project_card1_1x.jpg" alt="СТО “Шмітц Каргобул Україна”" class="project-card__img lazy"
+                 data-srcset="img/mob_project_card1_2x.jpg 2x">
           </picture>
           <p class="project-card__desc-wrapper project-card__desc-wrapper--right">
             <span class="project-card__img-desc">Фінанси</span>
@@ -322,13 +364,15 @@
             <span class="project-card__info-desc">Шмитц Каргобул Украина <br> ООО</span>
           </p>
           <button class="project-card__look-btn btn">
-            <span>переглянути проект</span></button>
+            <span>переглянути проект</span>
+          </button>
         </div>
       </div>
     </div>
   </section>
 
   <section class="pagination">
+    <h2 class="visually-hidden">Навигация по страницам</h2>
     <div class="container">
       <div class="pagination__inner-wrapper">
         <button class="pagination__arrow pagination__arrow--prev" aria-label="Предидущая страница"></button>
@@ -358,11 +402,13 @@
   </section>
 
   <section class="send-message">
+    <h2 class="visually-hidden">Написать нам</h2>
     <div class="send-message__container container">
       <p class="send-message__desc">Є проект, де може знадобитись наша консультація? Пишіть нам на
         office@activitis.com.ua або залиште повідомлення у зворотній формі</p>
-      <button class="send-message__btn btn--lightblue">
-        <span>Написати повідомлення</span></button>
+      <button class="send-message__btn btn--lightblue js-open-form">
+        <span>Написати повідомлення</span>
+      </button>
     </div>
   </section>
 
@@ -422,7 +468,35 @@
   </div>
 </footer>
 
+<div class="form-overlay hidden"></div>
+<div class="container-form validator hidden">
+  <form class="form" id="form">
+    <h2 class="form__title">Реєстрація</h2>
+    <div class="form__control">
+      <label for="username">ім'я користувача</label>
+      <input type="text" id="username" placeholder="Введіть ім'я">
+      <small>Error message</small>
+    </div>
+    <div class="form__control">
+      <label for="email">Email</label>
+      <input type="text" id="email" placeholder="Введіть пошту">
+      <small>Error message</small>
+    </div>
+    <div class="form__control">
+      <label for="password">Пароль</label>
+      <input type="password" id="password" placeholder="Введіть пароль">
+      <small>Error message</small>
+    </div>
+    <div class="form__control">
+      <label for="password2">Підтвердження пароля</label>
+      <input type="password" id="password2" placeholder="Повторіть пароль">
+      <small>Error message</small>
+    </div>
+    <button type="submit">Відправити</button>
+  </form>
+</div>
 
+<script>svg4everybody();</script>
 <script src="js/common.js"></script>
 </body>
 

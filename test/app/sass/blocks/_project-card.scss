@@ -7,6 +7,7 @@
 
 .project-card__img-container {
   position: relative;
+  min-height: 317px;
 }
 
 .project-card__desc-wrapper {
@@ -93,6 +94,10 @@
     max-width: 1440px;
   }
 
+  .project-card__img-container {
+    min-height: 435px;
+  }
+
   .project-card--odd {
 
     .project-card__img-container {
@@ -107,10 +112,10 @@
   .project-card__info-container {
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-start;
     justify-content: space-between;
     width: 598px;
     min-height: 435px;
-    align-items: flex-start;
     padding: 110px 90px 35px;
   }
 

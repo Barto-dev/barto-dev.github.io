@@ -15,6 +15,7 @@
 @import "blocks/main-nav";
 @import "blocks/site-navigation";
 @import "blocks/user-navigation";
+@import "blocks/choice-language";
 @import "blocks/promo";
 
 //main
@@ -26,3 +27,5 @@
 //footer
 @import "blocks/main-footer";
 @import "blocks/contacts";
+
+@import "blocks/form";

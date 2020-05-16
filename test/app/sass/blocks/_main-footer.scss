@@ -3,62 +3,63 @@
   line-height: 21px;
   color: #ffffff;
   background-color: #292839;
-
-  &__container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 50px 35px;
-  }
-
-  &__logo {
-    margin-bottom: 40px;
-  }
-
-  &__rules-link {
-    color: #56ccf2;
-    text-decoration: none;
-  }
-
-  &__rules {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 50px;
-    margin: 0;
-    margin-bottom: 15px;
-    text-align: center;
-  }
-
-  &__copyright {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    min-height: 60px;
-    margin: 0;
-    text-align: center;
-  }
-
-  &__contacts {
-    margin-bottom: 30px;
-  }
-
-  &__copyright-desc {
-    position: relative;
-    color: #ffffff;
-    text-decoration: none;
-  }
-
-  &__copyright-fire {
-    animation: fire 1s ease-in-out infinite alternate;
-  }
-
-  &__copyright-sun {
-    position: absolute;
-    top: 2px;
-    right: 0;
-  }
 }
+
+.main-footer__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 35px;
+}
+
+.main-footer__logo {
+  margin-bottom: 40px;
+}
+
+.main-footer__rules-link {
+  color: #56ccf2;
+  text-decoration: none;
+}
+
+.main-footer__rules {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 50px;
+  margin: 0;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.main-footer__copyright {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 60px;
+  margin: 0;
+  text-align: center;
+}
+
+.main-footer__contacts {
+  margin-bottom: 30px;
+}
+
+.main-footer__copyright-desc {
+  position: relative;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.main-footer__copyright-fire {
+  animation: fire 1s ease-in-out infinite alternate;
+}
+
+.main-footer__copyright-sun {
+  position: absolute;
+  top: 2px;
+  right: 0;
+}
+
 
 @media (min-width: $large-device) {
 
@@ -78,6 +79,14 @@
     grid-column: 1/1;
     align-items: start;
   }
+
+  .main-footer__rules-link {
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
 
   .main-footer__copyright {
     display: grid;
@@ -104,5 +113,9 @@
   .main-footer__copyright-desc--sun {
     justify-self: end;
     padding-right: 20px;
+
+    &:hover .main-footer__copyright-fire {
+      color: #f9d71c;
+    }
   }
 }
