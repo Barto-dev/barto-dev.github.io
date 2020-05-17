@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <title>Тестовое задание</title>
+  <meta name="description" content="Тестовое задание">
+  <link rel="preload" href="fonts/montserrat-bold.woff2" as="font">
+  <link rel="preload" href="fonts/montserrat-regular.woff2" as="font">
+  <link rel="preload" href="fonts/prata-regular.woff2" as="font">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/normalize.min.css">
+  <link rel="stylesheet" href="css/main.min.css">
+  <meta name="theme-color" content="#fafafa">
+  <!--  Полифил для работы респонсив изображений в старых браузерах-->
+  <script> document.createElement( "picture" );</script>
+  <script async src="js/picturefill.min.js"></script>
+  <script src="js/svg4everybody.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@15.1.1/dist/lazyload.min.js"></script>
+</head>
+<body>
+<div style="display: none;">
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <symbol id="icon-address" viewBox="0 0 13 13">
+      <path
+        d="M.542 3.25v8.667L4.333 9.75l4.333 2.167 3.792-2.167V1.083L8.666 3.25 4.333 1.083.542 3.25zm3.791-2.167V9.75m4.333-6.5v8.667"
+        stroke="#6FCF97" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-client" viewBox="0 0 14 14">
+      <path
+        d="M9.917 12.25v-1.167A2.333 2.333 0 007.583 8.75H2.917a2.333 2.333 0 00-2.334 2.333v1.167M5.25 6.417a2.333 2.333 0 100-4.667 2.333 2.333 0 000 4.667zm8.167 5.833v-1.167a2.334 2.334 0 00-1.75-2.257m-2.334-7a2.333 2.333 0 010 4.52"
+        stroke="#6FCF97" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="icon-facebook" viewBox="0 0 20 20">
+      <path
+        d="M15 20H5c-2.8 0-5-2.2-5-5V5c0-2.8 2.2-5 5-5h10c2.8 0 5 2.2 5 5v10c0 2.7-2.2 5-5 5zM5 2C3.3 2 2 3.3 2 5v10c0 1.7 1.3 3 3 3h10c1.7 0 3-1.3 3-3V5c0-1.7-1.3-3-3-3H5z"
+        fill="#fff"/>
+      <path d="M9 6.7v1.4H8v1.7h1v5h2.1v-5h1.4s.1-.8.2-1.7h-1.6V6.9c0-.2.2-.4.4-.4h1.1V4.8h-1.5C9 4.8 9 6.4 9 6.7z"
+            fill="#fff"/>
+    </symbol>
+    <symbol id="icon-mail" viewBox="0 0 20 20">
+      <path
+        d="M15 0H5C2.2 0 0 2.2 0 5v10c0 2.8 2.2 5 5 5h10c2.8 0 5-2.2 5-5V5c0-2.8-2.2-5-5-5zm3 15c0 1.7-1.3 3-3 3H5c-1.7 0-3-1.3-3-3V5c0-1.7 1.3-3 3-3h10c1.7 0 3 1.3 3 3v10z"
+        fill="#fff"/>
+      <path
+        d="M15.7 6.6L10 11.3 4.3 6.6c-.2-.2-.5-.2-.7 0-.2.2-.1.6.1.7l6 5c.1.1.2.1.3.1.1 0 .2 0 .3-.1l6-5c.2-.2.2-.5.1-.7-.2-.2-.5-.2-.7 0z"
+        fill="#fff"/>
+    </symbol>
+    <symbol id="icon-phone" viewBox="0 0 16 16">
+      <path
+        d="M3.231.001c.273-.016.52.146.708.432l1.814 3.402a.979.979 0 01-.202 1.123l-.831.821a.4.4 0 00-.086.234c.319 1.22 1.285 2.345 2.138 3.118.853.774 1.77 1.821 2.96 2.07.147.04.327.054.432-.042l.966-.972c.333-.25.815-.371 1.171-.167h.016l3.274 1.91c.48.298.53.874.187 1.224l-2.255 2.212c-.333.337-.776.45-1.206.451-1.9-.056-3.697-.978-5.172-1.926-2.422-1.742-4.643-3.902-6.038-6.512C.572 6.285-.056 4.89.004 3.667c.005-.46.131-.91.458-1.206L2.717.231c.176-.147.35-.22.514-.23z"
+        fill="#292839"/>
+    </symbol>
+    <symbol id="icon-pin" viewBox="0 0 16 20">
+      <path
+        d="M8 0C3.59 0 0 3.548 0 7.904c-.029 6.371 7.696 11.654 8 11.868 0 0 8.029-5.497 8-11.863C16 3.549 12.41 0 8 0zm0 11.863c-2.21 0-4-1.77-4-3.954 0-2.185 1.79-3.955 4-3.955s4 1.77 4 3.955-1.79 3.954-4 3.954z"
+        fill="#292839"/>
+    </symbol>
+    <symbol id="icon-scroll-arrow" viewBox="0 0 50 50">
+      <rect opacity=".1" x="1.5" y="1.5" width="47" height="47" rx="23.5" stroke="#fff" stroke-width="3"/>
+      <rect opacity=".2" x="4.5" y="4.5" width="41" height="41" rx="20.5" stroke="#fff" stroke-width="3"/>
+      <rect opacity=".5" x="7.5" y="7.5" width="35" height="35" rx="17.5" stroke="#fff" stroke-width="3"/>
+      <path d="M25 15.714v18.572m0 0l5-5.16m-5 5.16l-5-5.16" stroke="#fff"/>
+    </symbol>
+  </svg>
+</div>
+
+<header class="main-header">
+  <div class="main-header__container container">
+    <div class="main-header__inner-wrapper">
+      <button class="main-header__toggle-btn toggle-btn" aria-label="Открыть/закрыть меню">
+        <!--        Решение обернуть линии в span может показаться странным но флексы не работают в button,-->
+        <!--        в бета релизе Хромиума 83, эта проблема уже решена и скоро можно будет так не делать -->
+        <!--        https://www.chromestatus.com/feature/5213452823953408-->
+        <span class="toggle-btn__wrapper">
+          <span class="toggle-btn__line toggle-btn__line-1"></span>
+          <span class="toggle-btn__line toggle-btn__line-2"></span>
+          <span class="toggle-btn__line toggle-btn__line-3"></span>
+        </span>
+      </button>
+      <a href="#" class="main-header__logo">
+        <img src="img/logo.svg" alt="Логотип" class="main-header__img">
+      </a>
+      <ul class="main-header__user-navigation user-navigation">
+        <li class="user-navigation__item">
+          <a href="" class="user-navigation__link">Activitis</a>
+        </li>
+        <li class="user-navigation__item">
+          <a href="" class="user-navigation__link">Фінансові послуги</a>
+        </li>
+        <li class="user-navigation__item">
+          <a href="" class="user-navigation__link">управління нерухомістю</a>
+        </li>
+        <li class="user-navigation__item">
+          <a href="" class="user-navigation__link">Контакти</a>
+        </li>
+      </ul>
+      <nav class="main-header__nav main-nav">
+        <ul class="site-navigation">
+          <li class="site-navigation__item">
+            <a href="#" class="site-navigation__link">Activitis</a>
+          </li>
+          <li class="site-navigation__item">
+            <a href="#" class="site-navigation__link">Фінансові послуги</a>
+          </li>
+          <li class="site-navigation__item">
+            <a href="#" class="site-navigation__link">управління нерухомістю</a>
+          </li>
+          <li class="site-navigation__item">
+            <a href="#" class="site-navigation__link">Контакти</a>
+          </li>
+        </ul>
+      </nav>
+      <ul class="main-header__contacts">
+        <li class="main-header__contact-item">
+          <a href="#" class="main-header__contact-link" aria-label="Написать нам на почту">
+            <svg class="main-header__contact-img main-header__mail-icon" width="26" height="26">
+              <use xlink:href="#icon-mail"></use>
+            </svg>
+          </a>
+        </li>
+        <li class="main-header__contact-item">
+          <a href="#" class="main-header__contact-link" aria-label="Написать нам в фейсбук">
+            <svg class="main-header__contact-img" width="26" height="26">
+              <use xlink:href="#icon-facebook"></use>
+            </svg>
+          </a>
+        </li>
+      </ul>
+
+      <div class="main-header__choice-language choice-language">
+        <button class="choice-language__btn">UKR</button>
+        <div class="choice-language__wrapper hidden">
+          <label class="choice-language__language">
+            <input type="radio"
+                   class="visually-hidden"
+                   name="language"
+                   value="uk"
+                   checked>UKR
+          </label>
+          <label class="choice-language__language">
+            <input type="radio"
+                   class="visually-hidden"
+                   name="language"
+                   value="en">ENG
+          </label>
+          <label class="choice-language__language">
+            <input type="radio"
+                   class="visually-hidden"
+                   name="language"
+                   value="ru">RUS
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <section class="promo">
+      <h1 class="promo__title js-lang" lang="uk">Наші проекти</h1>
+      <h1 class="promo__title js-lang hidden" lang="en">Our projects</h1>
+      <h1 class="promo__title js-lang hidden" lang="ru">Наши проекты</h1>
+            <p class="promo__desc js-lang" lang="uk">Це слова і букви були змінені додаванням або видаленням, так навмисно роблять його зміст безглуздо, це не є справжньою, правильно чи зрозумілою Латинської більше. У той час як Lorem Ipsum все ще нагадує класичну латину, він насправді не має ніякого значення.Зовнішність європейських мовах.</p>
+      <p class="promo__desc js-lang hidden" lang="en">Amet sit anim ea adipisicing quis tempor cillum. Occaecat proident ipsum incididunt nostrud
+        consectetur velit deserunt nulla cupidatat minim reprehenderit. Ullamco eu quis qui nostrud dolor incididunt
+        laboris magna aliquip occaecat do aute velit. Id quis velit eu dolor enim sit ut ullamco.</p>
+      <p class="promo__desc js-lang hidden" lang="ru">Идейные соображения высшего порядка, а также сложившаяся структура организации влечет за собой процесс внедрения и модернизации модели развития. Товарищи! новая модель организационной деятельности требуют от нас анализа существенных финансовых и административных условий.  </p>
+      <ul class="promo__achieve-list">
+        <li class="promo__achieve-item">
+          <span class="js-lang" lang="uk">30 проектів</span>
+          <span class="js-lang hidden" lang="en">30 projects</span>
+          <span class="js-lang hidden" lang="ru">30 проектов</span>
+        </li>
+        <li class="promo__achieve-item">
+          <span class="js-lang" lang="uk">20 реалізованих</span>
+          <span class="js-lang hidden" lang="en">20 implemented</span>
+          <span class="js-lang hidden" lang="ru">20 Реализованых</span>
+        </li>
+        <li class="promo__achieve-item">
+          <span class="js-lang" lang="uk">10 в роботі</span>
+          <span class="js-lang hidden" lang="en">10 in work</span>
+          <span class="js-lang hidden" lang="ru">10 в работе</span>
+        </li>
+      </ul>
+      <button class="promo__scroll-btn" aria-label="Проскролить вниз">
+        <svg class="promo__scroll-img" width="50" height="50">
+          <use xlink:href="#icon-scroll-arrow"></use>
+        </svg>
+      </button>
+    </section>
+  </div>
+</header>
+
+<main class="main-container">
+  <section class="projects">
+    <div class="projects__container container">
+      <div class="projects__header">
+        <h2 class="projects__title">проекти</h2>
+        <ul class="projects__filter">
+          <li class="projects__filter-item projects__filter-item--current">
+            <label>
+              <input class="projects__filter-button visually-hidden" type="radio" name="project-choice" value="all"
+                     checked>
+              <span class="projects__filter-name">Усі</span>
+            </label>
+          </li>
+          <li class="projects__filter-item">
+            <label>
+              <input class="projects__filter-button visually-hidden" type="radio" name="project-choice" value="finance">
+              <span class="projects__filter-name">Фінанси</span>
+            </label>
+          </li>
+          <li class="projects__filter-item">
+            <label>
+              <input class="projects__filter-button visually-hidden" type="radio" name="project-choice" value="realty">
+              <span class="projects__filter-name">Нерухомість</span>
+            </label>
+          </li>
+        </ul>
+      </div>
+
+      <div class="project-card projects__card" data-category="finance">
+        <div class="project-card__img-container">
+          <picture>
+            <source media="(min-width:1440px)"
+                    srcset="img/desc_project_card1_1x.jpg 1x, img/desc_project_card1_2x.jpg 2x">
+            <img src="img/mob_project_card1_1x.jpg" alt="СТО “Шмітц Каргобул Україна”" class="project-card__img"
+                 srcset="img/mob_project_card1_2x.jpg 2x">
+          </picture>
+          <p class="project-card__desc-wrapper">
+            <span class="project-card__img-desc">Фінанси</span>
+          </p>
+        </div>
+        <div class="project-card__info-container">
+          <h3 class="project-card__title">СТО “Шмітц Каргобул Україна”</h3>
+          <p class="project-card__info-wrapper">
+            <span class="project-card__info-title project-card__info-title--address">
+              <svg class="project-card__client-icon" width="14" height="14">
+                <use xlink:href="#icon-address"></use>
+              </svg>
+              Адреса
+            </span>
+            <span class="project-card__info-desc">бульвар Вацлава Гавела, <br> 6з, Київ, 03067</span>
+          </p>
+          <p class="project-card__info-wrapper">
+            <span class="project-card__info-title">
+              <svg class="project-card__client-icon" width="14" height="14">
+                <use xlink:href="#icon-client"></use>
+              </svg>
+              Клієнт
+            </span>
+            <span class="project-card__info-desc">Шмитц Каргобул Украина <br> ООО</span>
+          </p>
+          <button class="project-card__look-btn btn">
+            <span>переглянути проект</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="project-card projects__card project-card--odd" data-category="realty">
+        <div class="project-card__img-container">
+          <picture>
+            <source media="(min-width:1440px)"
+                    data-srcset="img/desc_project_card2_1x.jpg 1x, img/desc_project_card2_2x.jpg 2x">
+            <img data-src="img/mob_project_card2_1x.jpg" alt="СТО “Шмітц Каргобул Україна”" class="project-card__img lazy"
+                 data-srcset="img/mob_project_card2_2x.jpg 2x">
+          </picture>
+          <p class="project-card__desc-wrapper project-card__desc-wrapper--right project-card__desc-wrapper--blue">
+            <span class="project-card__img-desc">Нерухомість</span>
+          </p>
+        </div>
+        <div class="project-card__info-container">
+          <h3 class="project-card__title">БЦ “Престиж”</h3>
+          <p class="project-card__info-wrapper">
+            <span class="project-card__info-title project-card__info-title--address">
+              <svg class="project-card__client-icon project-card__client-icon--blue" width="14" height="14">
+                <use xlink:href="#icon-address"></use>
+              </svg>
+              Адреса
+            </span>
+            <span class="project-card__info-desc">бульвар Вацлава Гавела, <br> 6з, Київ, 03067</span>
+          </p>
+          <p class="project-card__info-wrapper">
+            <span class="project-card__info-title project-card__info-title--client">
+              <svg class="project-card__client-icon project-card__client-icon--blue" width="14" height="14">
+                <use xlink:href="#icon-client"></use>
+              </svg>
+              Клієнт
+            </span>
+            <span class="project-card__info-desc">Шмитц Каргобул Украина <br> ООО</span>
+          </p>
+          <button class="project-card__look-btn btn btn--blue">
+            <span>переглянути проект</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="project-card projects__card" data-category="realty">
+        <div class="project-card__img-container">
+          <picture>
+            <source media="(min-width:1440px)"
+                    data-srcset="img/desc_project_card1_1x.jpg 1x, img/desc_project_card1_2x.jpg 2x">
+            <img data-src="img/mob_project_card1_1x.jpg" alt="СТО “Шмітц Каргобул Україна”" class="project-card__img lazy"
+                 data-srcset="img/mob_project_card1_2x.jpg 2x">
+          </picture>
+          <p class="project-card__desc-wrapper project-card__desc-wrapper--blue">
+            <span class="project-card__img-desc">Нерухомість</span>
+          </p>
+        </div>
+        <div class="project-card__info-container">
+          <h3 class="project-card__title">СТО “Шмітц Каргобул Україна”</h3>
+          <p class="project-card__info-wrapper">
+            <span class="project-card__info-title project-card__info-title--address">
+              <svg class="project-card__client-icon project-card__client-icon--blue" width="14" height="14">
+                <use xlink:href="#icon-address"></use>
+              </svg>
+              Адреса
+            </span>
+            <span class="project-card__info-desc">бульвар Вацлава Гавела, <br> 6з, Київ, 03067</span>
+          </p>
+          <p class="project-card__info-wrapper">
+            <span class="project-card__info-title">
+              <svg class="project-card__client-icon project-card__client-icon--blue" width="14" height="14">
+                <use xlink:href="#icon-client"></use>
+              </svg>
+              Клієнт
+            </span>
+            <span class="project-card__info-desc">Шмитц Каргобул Украина <br> ООО</span>
+          </p>
+          <button class="project-card__look-btn btn btn--blue">
+            <span>переглянути проект</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="project-card projects__card project-card--odd" data-category="finance">
+        <div class="project-card__img-container">
+          <picture>
+            <source media="(min-width:1440px)"
+                    data-srcset="img/desc_project_card1_1x.jpg 1x, img/desc_project_card1_2x.jpg 2x">
+            <img data-src="img/mob_project_card1_1x.jpg" alt="СТО “Шмітц Каргобул Україна”" class="project-card__img lazy"
+                 data-srcset="img/mob_project_card1_2x.jpg 2x">
+          </picture>
+          <p class="project-card__desc-wrapper project-card__desc-wrapper--right">
+            <span class="project-card__img-desc">Фінанси</span>
+          </p>
+        </div>
+        <div class="project-card__info-container">
+          <h3 class="project-card__title">СТО “Шмітц Каргобул Україна”</h3>
+          <p class="project-card__info-wrapper">
+            <span class="project-card__info-title project-card__info-title--address">
+              <svg class="project-card__client-icon" width="14" height="14">
+                <use xlink:href="#icon-address"></use>
+              </svg>
+              Адреса
+            </span>
+            <span class="project-card__info-desc">бульвар Вацлава Гавела, <br> 6з, Київ, 03067</span>
+          </p>
+          <p class="project-card__info-wrapper">
+            <span class="project-card__info-title">
+              <svg class="project-card__client-icon" width="14" height="14">
+                <use xlink:href="#icon-client"></use>
+              </svg>
+              Клієнт
+            </span>
+            <span class="project-card__info-desc">Шмитц Каргобул Украина <br> ООО</span>
+          </p>
+          <button class="project-card__look-btn btn">
+            <span>переглянути проект</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pagination">
+    <h2 class="visually-hidden">Навигация по страницам</h2>
+    <div class="container">
+      <div class="pagination__inner-wrapper">
+        <button class="pagination__arrow pagination__arrow--prev" aria-label="Предидущая страница"></button>
+        <ul class="pagination__list">
+          <li class="pagination__item">
+            <button class="pagination__button">1</button>
+          </li>
+          <li class="pagination__item pagination__button--current">
+            <button class="pagination__button">2</button>
+          </li>
+          <li class="pagination__item">
+            <button class="pagination__button">3</button>
+          </li>
+          <li class="pagination__item">
+            <button class="pagination__button">4</button>
+          </li>
+          <li class="pagination__item">
+            <button class="pagination__button">5</button>
+          </li>
+          <li class="pagination__item">
+            <button class="pagination__button">6</button>
+          </li>
+        </ul>
+        <button class="pagination__arrow pagination__arrow--next" aria-label="Следующая страница"></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="send-message">
+    <h2 class="visually-hidden">Написать нам</h2>
+    <div class="send-message__container container">
+      <p class="send-message__desc">Є проект, де може знадобитись наша консультація? Пишіть нам на
+        office@activitis.com.ua або залиште повідомлення у зворотній формі</p>
+      <button class="send-message__btn btn--lightblue js-open-form">
+        <span>Написати повідомлення</span>
+      </button>
+    </div>
+  </section>
+
+</main>
+
+<footer class="main-footer">
+  <div class="main-footer__container container">
+    <a href="" class="main-footer__logo">
+      <img src="img/logo.svg" alt="Логотип" class="main-footer__img" width="120" height="30">
+    </a>
+    <ul class="contacts main-footer__contacts">
+      <li class="contacts__item">
+        <a href="" class="contacts__link">
+          <svg class="contacts__link-icon" width="18" height="22">
+            <use xlink:href="#icon-pin"></use>
+          </svg>
+          01014, м. Київ , вул. Болсуновська, <br> будинок 13-15, офіс 620
+        </a>
+      </li>
+      <li class="contacts__item">
+        <a href="" class="contacts__link">
+          <svg class="contacts__link-icon" width="18" height="22">
+            <use xlink:href="#icon-phone"></use>
+          </svg>
+          044-465-66-01
+        </a>
+      </li>
+      <li class="contacts__item">
+        <a href="" class="contacts__link">
+
+          <svg class="contacts__link-icon" width="18" height="22">
+            <use xlink:href="#icon-mail"></use>
+          </svg>
+          office@ukactivitis.com
+        </a>
+      </li>
+      <li class="contacts__item">
+        <a href="" class="contacts__link">
+          <svg class="contacts__link-icon" width="18" height="22">
+            <use xlink:href="#icon-facebook"></use>
+          </svg>
+          facebook.com/Activitis.Group
+        </a>
+      </li>
+    </ul>
+    <p class="main-footer__rules">
+      <a href="#" class="main-footer__rules-link">Публічна оферта</a>
+      <a href="#" class="main-footer__rules-link">Умови використання</a>
+    </p>
+    <p class="main-footer__copyright">
+      <span class="main-footer__copyright-desc">© 2019 Всі права захищено.</span>
+      <a href="https://sun.agency/" class="main-footer__copyright-desc main-footer__copyright-desc--sun">Активність від
+        <span class="main-footer__copyright-fire">Сонця</span>
+        <img class="main-footer__copyright-sun" src="img/summertime.svg" alt="Иконка солнца" width="16" height="16">
+      </a>
+    </p>
+  </div>
+</footer>
+
+<div class="form-overlay hidden"></div>
+<div class="container-form validator hidden">
+  <form class="form" id="form">
+    <h2 class="form__title">Реєстрація</h2>
+    <div class="form__control">
+      <label for="username">ім'я користувача</label>
+      <input type="text" id="username" placeholder="Введіть ім'я">
+      <small>Error message</small>
+    </div>
+    <div class="form__control">
+      <label for="email">Email</label>
+      <input type="text" id="email" placeholder="Введіть пошту">
+      <small>Error message</small>
+    </div>
+    <div class="form__control">
+      <label for="password">Пароль</label>
+      <input type="password" id="password" placeholder="Введіть пароль">
+      <small>Error message</small>
+    </div>
+    <div class="form__control">
+      <label for="password2">Підтвердження пароля</label>
+      <input type="password" id="password2" placeholder="Повторіть пароль">
+      <small>Error message</small>
+    </div>
+    <button type="submit">Відправити</button>
+  </form>
+</div>
+
+<script>svg4everybody();</script>
+<script src="js/scripts.min.js"></script>
+</body>
+</html>
+
+
+
+
+
