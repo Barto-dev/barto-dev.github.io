@@ -11,12 +11,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="css/normalize.min.css">
   <link rel="stylesheet" href="css/main.min.css">
+<link rel="manifest" href="/manifest.json">
   <meta name="theme-color" content="#fafafa">
   <!--  Полифил для работы респонсив изображений в старых браузерах-->
   <script> document.createElement( "picture" );</script>
   <script async src="js/picturefill.min.js"></script>
   <script src="js/svg4everybody.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@15.1.1/dist/lazyload.min.js"></script>
+
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, function(err) {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  });
+}
+</script>
 </head>
 <body>
 <div style="display: none;">
