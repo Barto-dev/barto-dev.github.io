@@ -21311,6 +21311,47 @@ module.exports = function(module) {
 
 /***/ }),
 
+/***/ "./src/components/abstract.js":
+/*!************************************!*\
+  !*** ./src/components/abstract.js ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Abstract; });
+/* harmony import */ var _utils_render__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/render */ "./src/utils/render.js");
+
+
+class Abstract {
+  constructor() {
+    if (new.target === Abstract) {
+      throw new Error(`Can't instantiate Abstract, only concrete one.`);
+    }
+    this._element = null;
+    this._callback = {};
+  }
+
+  getTemplate() {
+    throw new Error(`Abstract method not implemented: getTemplate`);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = Object(_utils_render__WEBPACK_IMPORTED_MODULE_0__["createElement"])(this.getTemplate());
+    }
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
+
+
+/***/ }),
+
 /***/ "./src/components/day.js":
 /*!*******************************!*\
   !*** ./src/components/day.js ***!
@@ -21322,7 +21363,9 @@ module.exports = function(module) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createDayTemplate", function() { return createDayTemplate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Day; });
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./src/utils.js");
+/* harmony import */ var _utils_moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/moment */ "./src/utils/moment.js");
+/* harmony import */ var _abstract__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./abstract */ "./src/components/abstract.js");
+
 
 
 const createDayTemplate = (info, index) => {
@@ -21330,29 +21373,20 @@ const createDayTemplate = (info, index) => {
   return `<li class="trip-days__item  day">
         <div class="day__info">
           <span class="day__counter">${index + 1}</span>
-          <time class="day__date" datetime="2019-03-18">${Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getMomentMonthAsString"])(day)}</time>
+          <time class="day__date" datetime="2019-03-18">${Object(_utils_moment__WEBPACK_IMPORTED_MODULE_0__["getMomentMonthAsString"])(day)}</time>
         </div>
         <ul class="trip-events__list"></ul>
       </li>`;
 };
 
-class Day {
+class Day extends _abstract__WEBPACK_IMPORTED_MODULE_1__["default"] {
   constructor(info, index) {
-    this._element = null;
+    super();
     this._info = info;
     this._index = index;
   }
   getTemplate() {
     return createDayTemplate(this._info, this._index);
-  }
-  getElement() {
-    if (!this._element) {
-      this._element = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["createElement"])(this.getTemplate(this._info, this._index));
-    }
-    return this._element;
-  }
-  removeElement() {
-    this._element = null;
   }
 }
 
@@ -21370,7 +21404,11 @@ class Day {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createEventEditTemplate", function() { return createEventEditTemplate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EventEdit; });
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./src/utils.js");
+/* harmony import */ var _utils_moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/moment */ "./src/utils/moment.js");
+/* harmony import */ var _utils_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/common */ "./src/utils/common.js");
+/* harmony import */ var _abstract__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./abstract */ "./src/components/abstract.js");
+
+
 
 
 
@@ -21495,7 +21533,7 @@ const createEventEditTemplate = (editPointTemplateDate = {}) => {
       </div>
       <div class="event__field-group  event__field-group--destination">
         <label class="event__label  event__type-output" for="event-destination-1">
-          ${Object(_utils__WEBPACK_IMPORTED_MODULE_0__["capitalize"])(point)} to
+          ${Object(_utils_common__WEBPACK_IMPORTED_MODULE_1__["capitalize"])(point)} to
         </label>
         <input class="event__input  event__input--destination" id="event-destination-1" type="text" name="event-destination" value="${city}" list="destination-list-1">
         <datalist id="destination-list-1">
@@ -21509,12 +21547,12 @@ const createEventEditTemplate = (editPointTemplateDate = {}) => {
         <label class="visually-hidden" for="event-start-time-1">
           From
         </label>
-        <input class="event__input  event__input--time" id="event-start-time-1" type="text" name="event-start-time" value="${Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getMomentSlashedFormat"])(startTime)}">
+        <input class="event__input  event__input--time" id="event-start-time-1" type="text" name="event-start-time" value="${Object(_utils_moment__WEBPACK_IMPORTED_MODULE_0__["getMomentSlashedFormat"])(startTime)}">
         &mdash;
         <label class="visually-hidden" for="event-end-time-1">
           To
         </label>
-        <input class="event__input  event__input--time" id="event-end-time-1" type="text" name="event-end-time" value="${Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getMomentSlashedFormat"])(endTime)}">
+        <input class="event__input  event__input--time" id="event-end-time-1" type="text" name="event-end-time" value="${Object(_utils_moment__WEBPACK_IMPORTED_MODULE_0__["getMomentSlashedFormat"])(endTime)}">
       </div>
       <div class="event__field-group  event__field-group--price">
         <label class="event__label" for="event-price-1">
@@ -21538,22 +21576,22 @@ const createEventEditTemplate = (editPointTemplateDate = {}) => {
   );
 };
 
-class EventEdit {
+class EventEdit extends _abstract__WEBPACK_IMPORTED_MODULE_2__["default"] {
   constructor(editPointTemplateDate) {
-    this._element = null;
+    super();
     this._editData = editPointTemplateDate || {};
   }
+
   getTemplate() {
     return createEventEditTemplate(this._editData);
   }
-  getElement() {
-    if (!this._element) {
-      this._element = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["createElement"])(this.getTemplate());
-    }
-    return this._element;
+
+  setSubmitHandler(cb) {
+    this.getElement().querySelector(`form`).addEventListener(`submit`, cb);
   }
-  removeElement() {
-    this._element = null;
+
+  setCancelHanlder(cb) {
+    this.getElement().querySelector(`.event__reset-btn`).addEventListener(`click`, cb);
   }
 }
 
@@ -21570,7 +21608,7 @@ class EventEdit {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EventPoints; });
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./src/utils.js");
+/* harmony import */ var _abstract__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./abstract */ "./src/components/abstract.js");
 
 
 const createEventPointTemplate = () => {
@@ -21579,21 +21617,9 @@ const createEventPointTemplate = () => {
   );
 };
 
-class EventPoints {
-  constructor() {
-    this._element = null;
-  }
+class EventPoints extends _abstract__WEBPACK_IMPORTED_MODULE_0__["default"] {
   getTemplate() {
     return createEventPointTemplate();
-  }
-  getElement() {
-    if (!this._element) {
-      this._element = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["createElement"])(this.getTemplate());
-    }
-    return this._element;
-  }
-  removeElement() {
-    this._element = null;
   }
 }
 
@@ -21610,7 +21636,11 @@ class EventPoints {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return EventsItem; });
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./src/utils.js");
+/* harmony import */ var _utils_moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/moment */ "./src/utils/moment.js");
+/* harmony import */ var _utils_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/common */ "./src/utils/common.js");
+/* harmony import */ var _abstract__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./abstract */ "./src/components/abstract.js");
+
+
 
 
 /**
@@ -21643,14 +21673,14 @@ const createEventTemplate = (eventData) => {
       <div class="event__type">
         <img class="event__type-icon" width="42" height="42" src="img/icons/${point}.png" alt="Event type icon">
       </div>
-      <h3 class="event__title">${Object(_utils__WEBPACK_IMPORTED_MODULE_0__["capitalize"])(point)} to ${city}</h3>
+      <h3 class="event__title">${Object(_utils_common__WEBPACK_IMPORTED_MODULE_1__["capitalize"])(point)} to ${city}</h3>
       <div class="event__schedule">
         <p class="event__time">
-          <time class="event__start-time" datetime="${Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getMomentISOFormat"])(startTime)}">${Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getMomentTimeAsString"])(startTime)}</time>
+          <time class="event__start-time" datetime="${Object(_utils_moment__WEBPACK_IMPORTED_MODULE_0__["getMomentISOFormat"])(startTime)}">${Object(_utils_moment__WEBPACK_IMPORTED_MODULE_0__["getMomentTimeAsString"])(startTime)}</time>
           &mdash;
-          <time class="event__end-time" datetime="${Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getMomentISOFormat"])(endTime)}">${Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getMomentTimeAsString"])(endTime)}</time>
+          <time class="event__end-time" datetime="${Object(_utils_moment__WEBPACK_IMPORTED_MODULE_0__["getMomentISOFormat"])(endTime)}">${Object(_utils_moment__WEBPACK_IMPORTED_MODULE_0__["getMomentTimeAsString"])(endTime)}</time>
         </p>
-        <p class="event__duration">${Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getTimeBetween"])(startTime, endTime)}</p>
+        <p class="event__duration">${Object(_utils_moment__WEBPACK_IMPORTED_MODULE_0__["getTimeBetween"])(startTime, endTime)}</p>
       </div>
       <p class="event__price">
         &euro;&nbsp;<span class="event__price-value">${price}</span>
@@ -21667,22 +21697,18 @@ const createEventTemplate = (eventData) => {
   );
 };
 
-class EventsItem {
+class EventsItem extends _abstract__WEBPACK_IMPORTED_MODULE_2__["default"] {
   constructor(eventData) {
+    super();
     this._eventDate = eventData;
-    this._element = null;
   }
   getTemplate() {
     return createEventTemplate(this._eventDate);
   }
-  getElement() {
-    if (!this._element) {
-      this._element = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["createElement"])(this.getTemplate());
-    }
-    return this._element;
-  }
-  removeElement() {
-    this._element = null;
+  setEditHandler(cb) {
+    this.getElement()
+      .querySelector(`.event__rollup-btn`)
+      .addEventListener(`click`, cb);
   }
 }
 
@@ -21699,7 +21725,7 @@ class EventsItem {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Filters; });
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./src/utils.js");
+/* harmony import */ var _abstract__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./abstract */ "./src/components/abstract.js");
 
 
 const createFiltersTemplate = () => {
@@ -21722,23 +21748,10 @@ const createFiltersTemplate = () => {
   );
 };
 
-class Filters {
-  constructor() {
-    this._element = null;
-  }
+class Filters extends _abstract__WEBPACK_IMPORTED_MODULE_0__["default"] {
   getTemplate() {
     return createFiltersTemplate();
   }
-  getElement() {
-    if (!this._element) {
-      this._element = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["createElement"])(this.getTemplate());
-    }
-    return this._element;
-  }
-  removeElement() {
-    this._element = null;
-  }
-
 }
 
 
@@ -21754,7 +21767,7 @@ class Filters {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SiteMenu; });
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./src/utils.js");
+/* harmony import */ var _abstract__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./abstract */ "./src/components/abstract.js");
 
 
 const createMenuTemplate = () => {
@@ -21766,21 +21779,9 @@ const createMenuTemplate = () => {
   );
 };
 
-class SiteMenu {
-  constructor() {
-    this._element = null;
-  }
+class SiteMenu extends _abstract__WEBPACK_IMPORTED_MODULE_0__["default"] {
   getTemplate() {
     return createMenuTemplate();
-  }
-  getElement() {
-    if (!this._element) {
-      this._element = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["createElement"])(this.getTemplate());
-    }
-    return this._element;
-  }
-  removeElement() {
-    this._element = null;
   }
 }
 
@@ -21798,7 +21799,9 @@ class SiteMenu {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createSortTemplate", function() { return createSortTemplate; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return SortTrip; });
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./src/utils.js");
+/* harmony import */ var _abstract__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./abstract */ "./src/components/abstract.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../constants */ "./src/constants.js");
+
 
 
 const createSortTemplate = () => {
@@ -21806,11 +21809,22 @@ const createSortTemplate = () => {
     `<form class="trip-events__trip-sort  trip-sort" action="#" method="get">
     <span class="trip-sort__item  trip-sort__item--day">Day</span>
     <div class="trip-sort__item  trip-sort__item--event">
-      <input id="sort-event" class="trip-sort__input  visually-hidden" type="radio" name="trip-sort" value="sort-event" checked>
+      <input id="sort-event"
+      class="trip-sort__input  visually-hidden"
+      type="radio"
+      name="trip-sort"
+      value="sort-event"
+      checked
+      data-sort-type="${_constants__WEBPACK_IMPORTED_MODULE_1__["SortType"].EVENT}">
       <label class="trip-sort__btn" for="sort-event">Event</label>
     </div>
     <div class="trip-sort__item  trip-sort__item--time">
-      <input id="sort-time" class="trip-sort__input  visually-hidden" type="radio" name="trip-sort" value="sort-time">
+      <input id="sort-time"
+      class="trip-sort__input  visually-hidden"
+      type="radio"
+      name="trip-sort"
+      value="sort-time"
+      data-sort-type="${_constants__WEBPACK_IMPORTED_MODULE_1__["SortType"].TIME}">
       <label class="trip-sort__btn" for="sort-time">
         Time
         <svg class="trip-sort__direction-icon" width="8" height="10" viewBox="0 0 8 10">
@@ -21819,7 +21833,11 @@ const createSortTemplate = () => {
       </label>
     </div>
     <div class="trip-sort__item  trip-sort__item--price">
-      <input id="sort-price" class="trip-sort__input  visually-hidden" type="radio" name="trip-sort" value="sort-price">
+      <input id="sort-price"
+      class="trip-sort__input  visually-hidden"
+      type="radio" name="trip-sort"
+      value="sort-price"
+      data-sort-type="${_constants__WEBPACK_IMPORTED_MODULE_1__["SortType"].PRICE}">
       <label class="trip-sort__btn" for="sort-price">
         Price
         <svg class="trip-sort__direction-icon" width="8" height="10" viewBox="0 0 8 10">
@@ -21830,23 +21848,28 @@ const createSortTemplate = () => {
     <span class="trip-sort__item  trip-sort__item--offers">Offers</span>
   </form>`
   );
-};
+}
+;
 
-class SortTrip {
+class SortTrip extends _abstract__WEBPACK_IMPORTED_MODULE_0__["default"] {
   constructor() {
-    this._element = null;
+    super();
+    this._sortTypeChangeHandler = this._sortTypeChangeHandler.bind(this);
   }
+
   getTemplate() {
     return createSortTemplate();
   }
-  getElement() {
-    if (!this._element) {
-      this._element = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["createElement"])(createSortTemplate());
-    }
-    return this._element;
+
+  _sortTypeChangeHandler(evt) {
+    evt.preventDefault();
+    // Passing event information to the callback
+    this._callback.sortTypeChange(evt.target.dataset.sortType);
   }
-  removeElement() {
-    this._element = null;
+
+  setSortTypeChangeHandler(callback) {
+    this._callback.sortTypeChange = callback;
+    this.getElement().addEventListener(`change`, this._sortTypeChangeHandler);
   }
 }
 
@@ -21863,7 +21886,7 @@ class SortTrip {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TripCost; });
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./src/utils.js");
+/* harmony import */ var _abstract__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./abstract */ "./src/components/abstract.js");
 /* harmony import */ var _computed__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../computed */ "./src/computed.js");
 
 
@@ -21876,21 +21899,9 @@ const createTripCostTemplate = () => {
   );
 };
 
-class TripCost {
-  constructor() {
-    this._element = null;
-  }
+class TripCost extends _abstract__WEBPACK_IMPORTED_MODULE_0__["default"] {
   getTemplate() {
     return createTripCostTemplate();
-  }
-  getElement() {
-    if (!this._element) {
-      this._element = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["createElement"])(this.getTemplate());
-    }
-    return this._element;
-  }
-  removeElement() {
-    this._element = null;
   }
 }
 
@@ -21907,7 +21918,9 @@ class TripCost {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TripInfo; });
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./src/utils.js");
+/* harmony import */ var _utils_moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/moment */ "./src/utils/moment.js");
+/* harmony import */ var _abstract__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./abstract */ "./src/components/abstract.js");
+
 
 
 const createTripInfoTemplate = (travelPoints, travelDays) => {
@@ -21918,29 +21931,20 @@ const createTripInfoTemplate = (travelPoints, travelDays) => {
     `<section class="trip-main__trip-info  trip-info">
        <div class="trip-info__main">
           <h1 class="trip-info__title">${firstPoint} &mdash; ${middlePoint} &mdash; ${finalPoint}</h1>
-          <p class="trip-info__dates">${Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getMomentMonthAsString"])(firstDay)}&nbsp;&mdash;&nbsp;${Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getMomentMonthAsString"])(lastDay)}</p>
+          <p class="trip-info__dates">${Object(_utils_moment__WEBPACK_IMPORTED_MODULE_0__["getMomentMonthAsString"])(firstDay)}&nbsp;&mdash;&nbsp;${Object(_utils_moment__WEBPACK_IMPORTED_MODULE_0__["getMomentMonthAsString"])(lastDay)}</p>
        </div>
      </section>`
   );
 };
 
-class TripInfo {
+class TripInfo extends _abstract__WEBPACK_IMPORTED_MODULE_1__["default"] {
   constructor(travelPoints, travelDays) {
-    this._element = null;
+    super();
     this._travelPoints = travelPoints;
     this._travelDays = travelDays;
   }
   getTemplate() {
     return createTripInfoTemplate(this._travelPoints, this._travelDays);
-  }
-  getElement() {
-    if (!this._element) {
-      this._element = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["createElement"])(this.getTemplate());
-    }
-    return this._element;
-  }
-  removeElement() {
-    this._element = null;
   }
 }
 
@@ -21963,7 +21967,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "travelPoints", function() { return travelPoints; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "travelDays", function() { return travelDays; });
 /* harmony import */ var _mock_travel__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mock/travel */ "./src/mock/travel.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils */ "./src/utils.js");
+/* harmony import */ var _utils_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/common */ "./src/utils/common.js");
 /* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./constants */ "./src/constants.js");
 
 
@@ -21992,12 +21996,12 @@ const allPointPrice = allPointInfo
  * @description find travel points
  * @return {{finalPoint: string, firstPoint: string, middlePoint: string}}
  */
-const findTravelPoints = () => {
+const getTravelPoints = () => {
   const firstTravelDay = allPointInfo[0];
   const middleTravelDay = allPointInfo[Math.round(allPointInfo.length / 2)];
   const lastTravelDay = allPointInfo[allPointInfo.length - 1];
   const firstPoint = firstTravelDay[0].city;
-  const middlePoint = middleTravelDay[Object(_utils__WEBPACK_IMPORTED_MODULE_1__["getRandomInteger"])(0, middleTravelDay.length - 1)].city;
+  const middlePoint = middleTravelDay[Object(_utils_common__WEBPACK_IMPORTED_MODULE_1__["getRandomInteger"])(0, middleTravelDay.length - 1)].city;
   const finalPoint = lastTravelDay[lastTravelDay.length - 1].city;
 
   return {
@@ -22010,7 +22014,7 @@ const findTravelPoints = () => {
  * @description find start day travel and finally day travel;
  * @return {{firstDay, lastDay: (string|string)}}
  */
-const findTravelDays = () => {
+const getTravelDays = () => {
   const firstDay = travelPointAll[0].day;
   const lastDay = travelPointAll[travelPointAll.length - 1].day;
 
@@ -22020,8 +22024,8 @@ const findTravelDays = () => {
   };
 };
 
-const travelPoints = findTravelPoints();
-const travelDays = findTravelDays();
+const travelPoints = getTravelPoints();
+const travelDays = getTravelDays();
 
 
 /***/ }),
@@ -22030,18 +22034,183 @@ const travelDays = findTravelDays();
 /*!**************************!*\
   !*** ./src/constants.js ***!
   \**************************/
-/*! exports provided: EVENT_COUNT, EVENT_DAY */
+/*! exports provided: EVENT_DAY, SortType, sortDirection */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EVENT_COUNT", function() { return EVENT_COUNT; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EVENT_DAY", function() { return EVENT_DAY; });
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils */ "./src/utils.js");
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SortType", function() { return SortType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sortDirection", function() { return sortDirection; });
+/* harmony import */ var _utils_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./utils/common */ "./src/utils/common.js");
 
 
-const EVENT_COUNT = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getRandomInteger"])(2,5);
-const EVENT_DAY = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getRandomInteger"])(2, 10);
+const EVENT_DAY = Object(_utils_common__WEBPACK_IMPORTED_MODULE_0__["getRandomInteger"])(2, 10);
+const SortType = {
+  EVENT: `event`,
+  TIME: `time`,
+  PRICE: `price`,
+};
+
+const sortDirection = {
+  UP: `up`,
+  DOWN: `down`,
+  DEFAULT: `default`
+};
+
+
+/***/ }),
+
+/***/ "./src/controllers/trip-controller.js":
+/*!********************************************!*\
+  !*** ./src/controllers/trip-controller.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TripController; });
+/* harmony import */ var _utils_render__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/render */ "./src/utils/render.js");
+/* harmony import */ var _components_day__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/day */ "./src/components/day.js");
+/* harmony import */ var _components_events_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/events-item */ "./src/components/events-item.js");
+/* harmony import */ var _components_event_edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/event-edit */ "./src/components/event-edit.js");
+/* harmony import */ var _components_event_point__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/event-point */ "./src/components/event-point.js");
+/* harmony import */ var _components_sort_trip__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/sort-trip */ "./src/components/sort-trip.js");
+/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../constants */ "./src/constants.js");
+/* harmony import */ var _utils_sort__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../utils/sort */ "./src/utils/sort.js");
+
+
+
+
+
+
+
+
+
+class TripController {
+  constructor(container, allDayData, allPointInfo) {
+    this._sortComponent = new _components_sort_trip__WEBPACK_IMPORTED_MODULE_5__["default"]();
+    this._container = container;
+    this._allPointInfo = allPointInfo;
+    this._allDay = allDayData;
+    // shallow copy for default sort
+    this._defaultDay = this._allPointInfo.slice();
+
+    this._currentSortType = _constants__WEBPACK_IMPORTED_MODULE_6__["SortType"].EVENT;
+
+    this._handleSortTypeChange = this._handleSortTypeChange.bind(this);
+
+  }
+
+  render() {
+    this._renderSort();
+    this._renderDaysContainer();
+    this._renderDays();
+    this._renderEventsInDay();
+
+  }
+
+  _renderSort() {
+    Object(_utils_render__WEBPACK_IMPORTED_MODULE_0__["render"])(this._container, this._sortComponent, _utils_render__WEBPACK_IMPORTED_MODULE_0__["renderPosition"].BEFOREEND);
+    this._sortComponent.setSortTypeChangeHandler(this._handleSortTypeChange);
+  }
+
+  _sortTasks(sortType) {
+    // 2. Этот исходный массив задач необходим,
+    // потому что для сортировки мы будем мутировать
+    // массив в свойстве _boardTasks
+    switch (sortType) {
+      case _constants__WEBPACK_IMPORTED_MODULE_6__["SortType"].TIME:
+        this._allPointInfo.sort(_utils_sort__WEBPACK_IMPORTED_MODULE_7__["sortTaskTime"]);
+        break;
+      case _constants__WEBPACK_IMPORTED_MODULE_6__["SortType"].PRICE:
+        this._allPointInfo.sort(_utils_sort__WEBPACK_IMPORTED_MODULE_7__["sortTaskPrice"]);
+        break;
+      default:
+        this._allPointInfo = this._defaultDay.slice();
+    }
+
+    this._currentSortType = sortType;
+  }
+
+  _clearTaskList() {
+    this._tripDays.innerHTML = ``;
+  }
+
+  _handleSortTypeChange(sortType) {
+    // Exit if current sort type equal click sort type
+    if (this._currentSortType === sortType) {
+      return;
+    }
+    // - Сортируем задачи
+    this._sortTasks(sortType);
+    // - Очищаем список
+    this._clearTaskList();
+    // - Рендерим список заново
+    this._renderDays();
+    this._renderEventsInDay();
+  }
+
+  _renderDaysContainer() {
+    Object(_utils_render__WEBPACK_IMPORTED_MODULE_0__["render"])(this._container, new _components_event_point__WEBPACK_IMPORTED_MODULE_4__["default"](), _utils_render__WEBPACK_IMPORTED_MODULE_0__["renderPosition"].BEFOREEND);
+    this._tripDays = this._container.querySelector(`.trip-days`);
+  }
+
+  _renderDays() {
+    for (const [index, travelDay] of this._allDay.entries()) {
+      Object(_utils_render__WEBPACK_IMPORTED_MODULE_0__["render"])(this._tripDays, new _components_day__WEBPACK_IMPORTED_MODULE_1__["default"](travelDay, index), _utils_render__WEBPACK_IMPORTED_MODULE_0__["renderPosition"].BEFOREEND);
+    }
+  }
+
+  _renderEvent(container, eventData) {
+    const eventComponent = new _components_events_item__WEBPACK_IMPORTED_MODULE_2__["default"](eventData);
+    const eventEditComponent = new _components_event_edit__WEBPACK_IMPORTED_MODULE_3__["default"](eventData);
+
+    const onEscDown = (evt) => {
+      if (evt.key === `Escape` || evt.key === `Esc`) {
+        evt.preventDefault();
+        Object(_utils_render__WEBPACK_IMPORTED_MODULE_0__["replace"])(eventComponent, eventEditComponent);
+        document.removeEventListener(`keydown`, onEscDown);
+      }
+    };
+
+    eventComponent.setEditHandler(() => {
+      Object(_utils_render__WEBPACK_IMPORTED_MODULE_0__["replace"])(eventEditComponent, eventComponent);
+      document.addEventListener(`keydown`, onEscDown);
+    });
+
+    eventEditComponent.setSubmitHandler((evt) => {
+      evt.preventDefault();
+      Object(_utils_render__WEBPACK_IMPORTED_MODULE_0__["replace"])(eventComponent, eventEditComponent);
+      document.removeEventListener(`keydown`, onEscDown);
+    });
+
+    eventEditComponent.setCancelHanlder((evt) => {
+      evt.preventDefault();
+      Object(_utils_render__WEBPACK_IMPORTED_MODULE_0__["replace"])(eventComponent, eventEditComponent);
+      document.removeEventListener(`keydown`, onEscDown);
+    });
+
+    Object(_utils_render__WEBPACK_IMPORTED_MODULE_0__["render"])(container, eventComponent, _utils_render__WEBPACK_IMPORTED_MODULE_0__["renderPosition"].BEFOREEND);
+  }
+
+  _renderEventsInDay() {
+    const tripsEventsListElement = this._container.querySelectorAll(`.trip-events__list`);
+    tripsEventsListElement.forEach((item, index) => {
+      const dayInfo = this._sortEventsByTime(this._allPointInfo[index]);
+      for (const day of dayInfo) {
+        this._renderEvent(item, day);
+      }
+    });
+  }
+
+  _sortEventsByTime(eventItem) {
+    return eventItem.sort((a, b) => {
+      return a.startTime.diff(b.startTime);
+    });
+  }
+}
 
 
 /***/ }),
@@ -22057,16 +22226,11 @@ const EVENT_DAY = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getRandomInteger"]
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_site_menu__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/site-menu */ "./src/components/site-menu.js");
 /* harmony import */ var _components_filters__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/filters */ "./src/components/filters.js");
-/* harmony import */ var _components_sort_trip__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/sort-trip */ "./src/components/sort-trip.js");
-/* harmony import */ var _components_event_edit__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/event-edit */ "./src/components/event-edit.js");
-/* harmony import */ var _components_event_point__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/event-point */ "./src/components/event-point.js");
-/* harmony import */ var _components_events_item__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/events-item */ "./src/components/events-item.js");
-/* harmony import */ var _components_trip_info__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/trip-info */ "./src/components/trip-info.js");
-/* harmony import */ var _components_trip_cost__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/trip-cost */ "./src/components/trip-cost.js");
-/* harmony import */ var _components_day__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/day */ "./src/components/day.js");
-/* harmony import */ var _computed__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./computed */ "./src/computed.js");
-/* harmony import */ var _constants__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./constants */ "./src/constants.js");
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./utils */ "./src/utils.js");
+/* harmony import */ var _components_trip_info__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/trip-info */ "./src/components/trip-info.js");
+/* harmony import */ var _components_trip_cost__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/trip-cost */ "./src/components/trip-cost.js");
+/* harmony import */ var _controllers_trip_controller__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./controllers/trip-controller */ "./src/controllers/trip-controller.js");
+/* harmony import */ var _computed__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./computed */ "./src/computed.js");
+/* harmony import */ var _utils_render__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./utils/render */ "./src/utils/render.js");
 
 
 
@@ -22074,102 +22238,30 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
-
-
-
-
-
-const test2 = _computed__WEBPACK_IMPORTED_MODULE_9__["allPointInfo"]
-  .map((item) => {
-    return item.reduce((sum, current) => sum + current.price, 0);
-  }).reduce((sum, current)=> sum + current, 0);
-console.log(test2);
 
 const tripMainElement = document.querySelector(`.trip-main`);
 const tripControlElement = tripMainElement.querySelector(`.trip-controls`);
 const tripMainMenuElement = tripControlElement.querySelector(`.visually-hidden:first-of-type`);
 const tripBoardsElement = document.querySelector(`.trip-events`);
 
+
 // Menu template (Table, Stats)
-Object(_utils__WEBPACK_IMPORTED_MODULE_11__["render"])(tripMainMenuElement, new _components_site_menu__WEBPACK_IMPORTED_MODULE_0__["default"]().getElement(), _utils__WEBPACK_IMPORTED_MODULE_11__["renderPosition"].AFTERBEGIN);
-
-// Filter template (everything, future, past)
-Object(_utils__WEBPACK_IMPORTED_MODULE_11__["render"])(tripControlElement, new _components_filters__WEBPACK_IMPORTED_MODULE_1__["default"]().getElement(), _utils__WEBPACK_IMPORTED_MODULE_11__["renderPosition"].BEFOREEND);
-
-// sort buttons (event, time, price);
-Object(_utils__WEBPACK_IMPORTED_MODULE_11__["render"])(tripBoardsElement, new _components_sort_trip__WEBPACK_IMPORTED_MODULE_2__["default"]().getElement(), _utils__WEBPACK_IMPORTED_MODULE_11__["renderPosition"].BEFOREEND);
-
-// trip days container
-Object(_utils__WEBPACK_IMPORTED_MODULE_11__["render"])(tripBoardsElement, new _components_event_point__WEBPACK_IMPORTED_MODULE_4__["default"]().getElement(), _utils__WEBPACK_IMPORTED_MODULE_11__["renderPosition"].BEFOREEND);
-
-const tripDays = tripBoardsElement.querySelector(`.trip-days`);
-
-// renderTemplate day item
-for (let i = 0; i < _constants__WEBPACK_IMPORTED_MODULE_10__["EVENT_DAY"]; i += 1) {
-  Object(_utils__WEBPACK_IMPORTED_MODULE_11__["render"])(tripDays, new _components_day__WEBPACK_IMPORTED_MODULE_8__["default"](_computed__WEBPACK_IMPORTED_MODULE_9__["travelPointAll"][i], i).getElement(), _utils__WEBPACK_IMPORTED_MODULE_11__["renderPosition"].BEFOREEND);
-}
-
-const eventRender = (container, eventData) => {
-  const eventComponent = new _components_events_item__WEBPACK_IMPORTED_MODULE_5__["default"](eventData);
-  const eventEditComponent = new _components_event_edit__WEBPACK_IMPORTED_MODULE_3__["default"](eventData);
-
-  const replaceCardToForm = () => {
-    container.replaceChild(eventEditComponent.getElement(), eventComponent.getElement());
-  };
-
-  const replaceFormToCard = () => {
-    container.replaceChild(eventComponent.getElement(), eventEditComponent.getElement());
-  };
-
-  const onEscDown = (evt) => {
-    if (evt.key === `Escape` || evt.key === `Esc`) {
-      evt.preventDefault();
-      replaceFormToCard();
-      document.removeEventListener(`keydown`, onEscDown);
-    }
-  };
-
-  eventComponent.getElement().querySelector(`.event__rollup-btn`).addEventListener(`click`, () => {
-    replaceCardToForm();
-    document.addEventListener(`keydown`, onEscDown);
-  });
-
-  eventEditComponent.getElement().querySelector(`form`).addEventListener(`submit`, (evt) => {
-    evt.preventDefault();
-    replaceFormToCard();
-    document.removeEventListener(`keydown`, onEscDown);
-  });
-
-  eventEditComponent.getElement().querySelector(`.event__reset-btn`).addEventListener(`click`, (evt) => {
-    evt.preventDefault();
-    replaceFormToCard();
-    document.removeEventListener(`keydown`, onEscDown);
-  });
-
-  Object(_utils__WEBPACK_IMPORTED_MODULE_11__["render"])(container, eventComponent.getElement(), _utils__WEBPACK_IMPORTED_MODULE_11__["renderPosition"].BEFOREEND);
-};
-
-
-// renderTemplate day events in day
-const tripsEventsListElement = tripBoardsElement.querySelectorAll(`.trip-events__list`);
-tripsEventsListElement.forEach((item, index) => {
-  const dayInfo = _computed__WEBPACK_IMPORTED_MODULE_9__["allPointInfo"][index]
-    .sort((a, b) => {
-      return a.startTime.diff(b.startTime);
-    });
-  for (let i = 0; i < dayInfo.length; i += 1) {
-    // render(item, new EventsItemView(dayInfo[i]).getElement(), renderPosition.BEFOREEND);
-    eventRender(item, dayInfo[i]);
-  }
-});
+Object(_utils_render__WEBPACK_IMPORTED_MODULE_6__["render"])(tripMainMenuElement, new _components_site_menu__WEBPACK_IMPORTED_MODULE_0__["default"](), _utils_render__WEBPACK_IMPORTED_MODULE_6__["renderPosition"].AFTERBEGIN);
 
 // top page info (price, points)
-Object(_utils__WEBPACK_IMPORTED_MODULE_11__["render"])(tripMainElement, new _components_trip_info__WEBPACK_IMPORTED_MODULE_6__["default"](_computed__WEBPACK_IMPORTED_MODULE_9__["travelPoints"], _computed__WEBPACK_IMPORTED_MODULE_9__["travelDays"]).getElement(), _utils__WEBPACK_IMPORTED_MODULE_11__["renderPosition"].AFTERBEGIN);
+Object(_utils_render__WEBPACK_IMPORTED_MODULE_6__["render"])(tripMainElement, new _components_trip_info__WEBPACK_IMPORTED_MODULE_2__["default"](_computed__WEBPACK_IMPORTED_MODULE_5__["travelPoints"], _computed__WEBPACK_IMPORTED_MODULE_5__["travelDays"]).getElement(), _utils_render__WEBPACK_IMPORTED_MODULE_6__["renderPosition"].AFTERBEGIN);
 const tripInfoElement = tripMainElement.querySelector(`.trip-main__trip-info`);
 
 // top trip info cost
-Object(_utils__WEBPACK_IMPORTED_MODULE_11__["render"])(tripInfoElement, new _components_trip_cost__WEBPACK_IMPORTED_MODULE_7__["default"]().getElement(), _utils__WEBPACK_IMPORTED_MODULE_11__["renderPosition"].BEFOREEND);
+Object(_utils_render__WEBPACK_IMPORTED_MODULE_6__["render"])(tripInfoElement, new _components_trip_cost__WEBPACK_IMPORTED_MODULE_3__["default"](), _utils_render__WEBPACK_IMPORTED_MODULE_6__["renderPosition"].BEFOREEND);
+
+// Filter template (everything, future, past)
+Object(_utils_render__WEBPACK_IMPORTED_MODULE_6__["render"])(tripControlElement, new _components_filters__WEBPACK_IMPORTED_MODULE_1__["default"](), _utils_render__WEBPACK_IMPORTED_MODULE_6__["renderPosition"].BEFOREEND);
+
+// all events presenter
+const tripPresenter = new _controllers_trip_controller__WEBPACK_IMPORTED_MODULE_4__["default"](tripBoardsElement, _computed__WEBPACK_IMPORTED_MODULE_5__["travelPointAll"], _computed__WEBPACK_IMPORTED_MODULE_5__["allPointInfo"]);
+tripPresenter.render();
+
 
 
 
@@ -22185,7 +22277,9 @@ Object(_utils__WEBPACK_IMPORTED_MODULE_11__["render"])(tripInfoElement, new _com
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generateTravelPoint", function() { return generateTravelPoint; });
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./src/utils.js");
+/* harmony import */ var _utils_moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/moment */ "./src/utils/moment.js");
+/* harmony import */ var _utils_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/common */ "./src/utils/common.js");
+
 
 
 const points = [`taxi`, `bus`, `train`, `ship`, `transport`, `drive`, `flight`, `check-in`, `sightseeing`, `restaurant`];
@@ -22195,13 +22289,13 @@ const offersList = [{title: `choose meal`, price: 10}, {title: `upgrade comfort`
 
 
 const getRandomArrayItem = (arr)=> {
-  const randomIndex = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getRandomInteger"])(0, arr.length - 1);
+  const randomIndex = Object(_utils_common__WEBPACK_IMPORTED_MODULE_1__["getRandomInteger"])(0, arr.length - 1);
   return arr[randomIndex];
 };
 
 const generateAdditionalOffer = ()=> {
   // return getRandomArrayItem(offersList);
-  const noUniqueOffers = new Array(Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getRandomInteger"])(0, offersList.length - 1))
+  const noUniqueOffers = new Array(Object(_utils_common__WEBPACK_IMPORTED_MODULE_1__["getRandomInteger"])(0, offersList.length - 1))
     .fill()
     .map(() => getRandomArrayItem(offersList));
   // only unique offers return
@@ -22232,7 +22326,7 @@ const generateDestination = ()=> {
     if (count >= maxCount) {
       break;
     }
-    if ((Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getRandomInteger"])(0, 1))) {
+    if ((Object(_utils_common__WEBPACK_IMPORTED_MODULE_1__["getRandomInteger"])(0, 1))) {
       description += item;
       count++;
     }
@@ -22240,20 +22334,20 @@ const generateDestination = ()=> {
 
   return {
     description,
-    photos: Array(Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getRandomInteger"])(0, maxPhoto)).fill().map(() => {
-      return `http://picsum.photos/248/152?r=${Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getRandomInteger"])(0, 200)}`;
+    photos: Array(Object(_utils_common__WEBPACK_IMPORTED_MODULE_1__["getRandomInteger"])(0, maxPhoto)).fill().map(() => {
+      return `http://picsum.photos/248/152?r=${Object(_utils_common__WEBPACK_IMPORTED_MODULE_1__["getRandomInteger"])(0, 200)}`;
     })
   };
 };
 
 
 const generatePrice = ()=> {
-  return 10 * (Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getRandomInteger"])(1, 30));
+  return 10 * (Object(_utils_common__WEBPACK_IMPORTED_MODULE_1__["getRandomInteger"])(1, 30));
 };
 
 const generateTravelPoint = ()=> {
   const additionalOffer = generateAdditionalOffer();
-  const startTime = Object(_utils__WEBPACK_IMPORTED_MODULE_0__["generateStartMoment"])();
+  const startTime = Object(_utils_moment__WEBPACK_IMPORTED_MODULE_0__["generateStartMoment"])();
   return {
     price: generatePrice(),
     point: getRandomArrayItem(points),
@@ -22261,8 +22355,8 @@ const generateTravelPoint = ()=> {
     additionalOffer: additionalOffer.length === 0 ? null : additionalOffer,
     description: generateDestination(),
     startTime,
-    endTime: Object(_utils__WEBPACK_IMPORTED_MODULE_0__["generateEndMoment"])(startTime),
-    isFavorite: Boolean(Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getRandomInteger"])(0, 1))
+    endTime: Object(_utils_moment__WEBPACK_IMPORTED_MODULE_0__["generateEndMoment"])(startTime),
+    isFavorite: Boolean(Object(_utils_common__WEBPACK_IMPORTED_MODULE_1__["getRandomInteger"])(0, 1))
   };
 };
 
@@ -22281,20 +22375,22 @@ const generateTravelPoint = ()=> {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "travelPoint", function() { return travelPoint; });
-/* harmony import */ var _utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils */ "./src/utils.js");
+/* harmony import */ var _utils_moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../utils/moment */ "./src/utils/moment.js");
 /* harmony import */ var _point__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./point */ "./src/mock/point.js");
+/* harmony import */ var _utils_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/common */ "./src/utils/common.js");
+
 
 
 
 const oneTravelPoint = () => {
-  return Array(Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getRandomInteger"])(Object(_utils__WEBPACK_IMPORTED_MODULE_0__["getRandomInteger"])(2, 5)))
+  return Array(Object(_utils_common__WEBPACK_IMPORTED_MODULE_2__["getRandomInteger"])(Object(_utils_common__WEBPACK_IMPORTED_MODULE_2__["getRandomInteger"])(2, 5)))
     .fill(undefined)
     .map(_point__WEBPACK_IMPORTED_MODULE_1__["generateTravelPoint"]);
 };
 
 const travelPoint = () => {
   return {
-    day: Object(_utils__WEBPACK_IMPORTED_MODULE_0__["generateStartMoment"])(),
+    day: Object(_utils_moment__WEBPACK_IMPORTED_MODULE_0__["generateStartMoment"])(),
     info: oneTravelPoint(),
   };
 };
@@ -22304,76 +22400,17 @@ const travelPoint = () => {
 
 /***/ }),
 
-/***/ "./src/utils.js":
-/*!**********************!*\
-  !*** ./src/utils.js ***!
-  \**********************/
-/*! exports provided: renderPosition, render, renderTemplate, createElement, getRandomInteger, capitalize, generateStartMoment, generateEndMoment, getMomentTimeAsString, getMomentDaysAsString, getMomentMonthAsString, getMomentISOFormat, getMomentSlashedFormat, getTimeBetween, test1 */
+/***/ "./src/utils/common.js":
+/*!*****************************!*\
+  !*** ./src/utils/common.js ***!
+  \*****************************/
+/*! exports provided: getRandomInteger, capitalize */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderPosition", function() { return renderPosition; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderTemplate", function() { return renderTemplate; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createElement", function() { return createElement; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getRandomInteger", function() { return getRandomInteger; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "capitalize", function() { return capitalize; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generateStartMoment", function() { return generateStartMoment; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generateEndMoment", function() { return generateEndMoment; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getMomentTimeAsString", function() { return getMomentTimeAsString; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getMomentDaysAsString", function() { return getMomentDaysAsString; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getMomentMonthAsString", function() { return getMomentMonthAsString; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getMomentISOFormat", function() { return getMomentISOFormat; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getMomentSlashedFormat", function() { return getMomentSlashedFormat; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTimeBetween", function() { return getTimeBetween; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "test1", function() { return test1; });
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
-/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
-
-
-const renderPosition = {
-  BEFOREEND: `beforeend`,
-  AFTERBEGIN: `afterbegin`,
-};
-/**
- * render html element in container
- * @param {HTMLElement} container
- * @param {HTMLElement} element
- * @param {string} place
- */
-const render = (container, element, place) => {
-  switch (place) {
-    case renderPosition.AFTERBEGIN:
-      container.prepend(element);
-      break;
-    case renderPosition.BEFOREEND:
-      container.append(element);
-      break;
-  }
-};
-
-/**
- * renderTemplate HTML
- * @param {object} container
- * @param {string} template
- * @param {string} place
- */
-const renderTemplate = (container, template, place) => {
-  container.insertAdjacentHTML(place, template);
-};
-
-/**
- * create element in empty div and return without this div
- * @param {string} template
- * @return {ChildNode}
- */
-const createElement = (template) => {
-  const newElement = document.createElement(`div`);
-  newElement.innerHTML = template;
-  return newElement.firstChild;
-};
-
 /**
  * generate random integer
  * @param {number} a
@@ -22391,6 +22428,32 @@ const capitalize = (string) => {
 };
 
 
+
+/***/ }),
+
+/***/ "./src/utils/moment.js":
+/*!*****************************!*\
+  !*** ./src/utils/moment.js ***!
+  \*****************************/
+/*! exports provided: generateStartMoment, generateEndMoment, getMomentTimeAsString, getMomentDaysAsString, getMomentMonthAsString, getMomentISOFormat, getMomentSlashedFormat, getTimeBetween */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generateStartMoment", function() { return generateStartMoment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "generateEndMoment", function() { return generateEndMoment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getMomentTimeAsString", function() { return getMomentTimeAsString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getMomentDaysAsString", function() { return getMomentDaysAsString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getMomentMonthAsString", function() { return getMomentMonthAsString; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getMomentISOFormat", function() { return getMomentISOFormat; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getMomentSlashedFormat", function() { return getMomentSlashedFormat; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTimeBetween", function() { return getTimeBetween; });
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./common */ "./src/utils/common.js");
+
+
+
 /**
  * generate random start date between -dayGap and dayGap
  * @return {moment.Moment}
@@ -22398,9 +22461,9 @@ const capitalize = (string) => {
 const generateStartMoment = () => {
   const maxDaysGap = 7;
   return moment__WEBPACK_IMPORTED_MODULE_0___default()()
-    .add(getRandomInteger(-maxDaysGap, maxDaysGap), `days`)
-    .hours(getRandomInteger(0, 23))
-    .minutes(5 * getRandomInteger(0, 11));
+    .add(Object(_common__WEBPACK_IMPORTED_MODULE_1__["getRandomInteger"])(-maxDaysGap, maxDaysGap), `days`)
+    .hours(Object(_common__WEBPACK_IMPORTED_MODULE_1__["getRandomInteger"])(0, 23))
+    .minutes(5 * Object(_common__WEBPACK_IMPORTED_MODULE_1__["getRandomInteger"])(0, 11));
 };
 
 /**
@@ -22410,9 +22473,9 @@ const generateStartMoment = () => {
  */
 const generateEndMoment = (startMoment) => {
   return moment__WEBPACK_IMPORTED_MODULE_0___default()(startMoment)
-    .add(getRandomInteger(1, 2), `days`)
-    .hours(getRandomInteger(0, 23))
-    .minutes(5 * getRandomInteger(0, 11));
+    .add(Object(_common__WEBPACK_IMPORTED_MODULE_1__["getRandomInteger"])(1, 2), `days`)
+    .hours(Object(_common__WEBPACK_IMPORTED_MODULE_1__["getRandomInteger"])(0, 23))
+    .minutes(5 * Object(_common__WEBPACK_IMPORTED_MODULE_1__["getRandomInteger"])(0, 11));
 };
 
 /**
@@ -22485,9 +22548,128 @@ const getTimeBetween = (startMoment, endMoment) => {
 
 };
 
-const test = generateStartMoment();
-const test2 = generateEndMoment(test);
-const test1 = getTimeBetween(test, test2);
+
+/***/ }),
+
+/***/ "./src/utils/render.js":
+/*!*****************************!*\
+  !*** ./src/utils/render.js ***!
+  \*****************************/
+/*! exports provided: renderPosition, render, renderTemplate, createElement, replace */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderPosition", function() { return renderPosition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "renderTemplate", function() { return renderTemplate; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createElement", function() { return createElement; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "replace", function() { return replace; });
+/* harmony import */ var _components_abstract__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/abstract */ "./src/components/abstract.js");
+
+
+const renderPosition = {
+  BEFOREEND: `beforeend`,
+  AFTERBEGIN: `afterbegin`,
+};
+/**
+ * render html element in container
+ * @param {Element} container
+ * @param {Object} child
+ * @param {string} place
+ */
+const render = (container, child, place) => {
+  if (container instanceof _components_abstract__WEBPACK_IMPORTED_MODULE_0__["default"]) {
+    container = container.getElement();
+  }
+  if (child instanceof _components_abstract__WEBPACK_IMPORTED_MODULE_0__["default"]) {
+    child = child.getElement();
+  }
+
+
+  switch (place) {
+    case renderPosition.AFTERBEGIN:
+      container.prepend(child);
+      break;
+    case renderPosition.BEFOREEND:
+      container.append(child);
+      break;
+  }
+};
+
+/**
+ * renderTemplate HTML
+ * @param {object} container
+ * @param {string} template
+ * @param {string} place
+ */
+const renderTemplate = (container, template, place) => {
+  container.insertAdjacentHTML(place, template);
+};
+
+/**
+ * create element in empty div and return without this div
+ * @param {string} template
+ * @return {ChildNode}
+ */
+const createElement = (template) => {
+  const newElement = document.createElement(`div`);
+  newElement.innerHTML = template;
+  return newElement.firstChild;
+};
+
+const replace = (newChild, oldChild) => {
+  if (newChild instanceof _components_abstract__WEBPACK_IMPORTED_MODULE_0__["default"]) {
+    newChild = newChild.getElement();
+  }
+  if (oldChild instanceof _components_abstract__WEBPACK_IMPORTED_MODULE_0__["default"]) {
+    oldChild = oldChild.getElement();
+  }
+  const parent = oldChild.parentElement;
+
+  if (parent === null && newChild === null) {
+    throw new Error(`Can't replace unexisting elements`);
+  }
+
+  parent.replaceChild(newChild, oldChild);
+};
+
+
+/***/ }),
+
+/***/ "./src/utils/sort.js":
+/*!***************************!*\
+  !*** ./src/utils/sort.js ***!
+  \***************************/
+/*! exports provided: sortTaskPrice, sortTaskTime */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sortTaskPrice", function() { return sortTaskPrice; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sortTaskTime", function() { return sortTaskTime; });
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+
+
+
+const sortTaskPrice = (taskA, taskB) => {
+
+  taskA.sort((item1, item2)=>{
+    return item1.price - item2.price;
+  });
+
+  taskB.sort((item1, item2)=>{
+    return item1.price - item2.price;
+  });
+
+  return taskA[0].price - taskB[0].price;
+};
+
+const sortTaskTime = (taskA, taskB) => {
+  console.log(taskA[0].startTime, taskB[0].startTime);
+  return taskA[0].startTime.diff(taskB[0].startTime, `hours`);
+};
 
 
 /***/ })
